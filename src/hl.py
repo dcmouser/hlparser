@@ -1,7 +1,8 @@
 # High and Low - NYC GIS Utilities
 
 # version
-app_info = 'highLow paser Tool v1.0 (mouser@donationcoder.com) [12/25/23]'
+appName = 'hlparser'
+appInfo = 'highLow paser Tool v1.0 (mouser@donationcoder.com) [12/25/23]'
 
 # lib imports
 from lib.jr import jrfuncs
@@ -10,8 +11,8 @@ from lib.jr.jrfuncs import jrprint
 # other imports
 import time
 import os
-import pathlib
 from datetime import datetime
+
 
 # class helper
 from hlparser import HlParser
@@ -32,19 +33,10 @@ optionOverrides = {'basedir': os.path.dirname(os.path.abspath(__file__)), 'saved
 # ---------------------------------------------------------------------------
 def main():
     # announce app
-    jrprint(app_info)
+    jrprint(appInfo)
 
     hlparser = HlParser('./options', optionOverrides)
-    hlparser.loadStoryFilesIntoBlocks()
-
-    # ATTN: TEST
-    if (True):
-        hlparser.processHeadBlocks()
-        hlparser.saveLeads()
-        hlparser.renderLeads()
-
-    hlparser.debug()
-    hlparser.reportWarnings()
+    hlparser.processCommandline(appName, appInfo)
 
 	# done
     return True

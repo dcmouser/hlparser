@@ -9,10 +9,12 @@
 	"unusedLeadFile": "$basedir/options/unusedLeads.csv",
 	"renderOptions": {
 		"format": "html",
-		"textSyntax": "plainText",
+		"textSyntaxUNUSED": "plainText",
+		"textSyntax": "markdown",
 		"leadLabels": true,
 		"sectionHeaders": true,
-		"index": true
+		"index": true,
+		"markdown": {"forceLinebreaks": true}
 	},
 	"tagsAsLetters": true
 }

@@ -5,6 +5,7 @@ from lib.jr import jroptions
 from lib.jr.jrfuncs import jrprint
 from lib.jr.jrfuncs import jrException
 
+from lib.jr.hlmarkdown import HlMarkdown
 
 # python modules
 import re
@@ -14,6 +15,7 @@ import pathlib
 from collections import OrderedDict
 import json
 import random
+import argparse
 
 
 
@@ -58,9 +60,48 @@ class HlParser:
         #
         self.doLoadAllOptions(optionsDirPath, overrideOptions)
         #
+        renderOptions = self.getOptionValThrowException('renderOptions')
+        markdownOptions = renderOptions['markdown']
+        self.hlMarkdown = HlMarkdown(markdownOptions)
+        #
         self.loadUnusedLeadsFromFile(self.getOptionValThrowException('unusedLeadFile'))
 # ---------------------------------------------------------------------------
         
+
+
+
+# ---------------------------------------------------------------------------
+    def runAll(self):
+        self.loadStoryFilesIntoBlocks()
+        #
+        self.processHeadBlocks()
+        self.saveLeads()
+        self.renderLeads()
+        #
+        self.debug()
+        self.reportWarnings()
+# ---------------------------------------------------------------------------
+
+
+
+
+
+
+# ---------------------------------------------------------------------------
+    def processCommandline(self, appName, appInfo):
+        parser = argparse.ArgumentParser(prog = appName, description = appInfo)
+        parser.add_argument('-w', '--workingdir', required=False)
+        args = parser.parse_args()
+        #
+        workingdir = args.workingdir
+        if (workingdir):
+            self.mergeOverrideOptions({'workingdir': workingdir})
+        #
+        self.runAll()
+# ---------------------------------------------------------------------------
+
+
+
 
 
 
@@ -1266,12 +1307,12 @@ class HlParser:
 
 
     def getDefaultSections(self):
-        defaultSections = {"sections": {
-		"D1": {"label": "Day One", "sort": "010"},
-		"D2": {"label": "Day Two", "sort": "020"},
-		"Leads": {"label": "Main Leads", "sort": "050"},
-		"End": {"label": "Conclustion", "sort": "100"},
-	    }}
+        defaultSections = {
+		"Briefings": {"label": "Briefings", "sort": "010"},
+		"Main": {"label": "Main Leads", "sort": "050"},
+		"End": {"label": "End", "sort": "100"},
+	    }
+
         return defaultSections
 
     def createRootChildSection(self, id, label, sortOrder):
@@ -1359,237 +1400,6 @@ class HlParser:
 
 
 
-
-
-
-
-
-
-
-
-# ---------------------------------------------------------------------------
-    def renderLeads(self):
-        jrprint('Rendering leads..')
-
-        # options
-        renderOptions = self.getOptionValThrowException('renderOptions')
-        renderFormat = renderOptions['format']
-        #
-        info = self.getOptionValThrowException('info')
-        chapterName = info['chapterName']
-        chapterTitle = info['chapterTitle']
-        chapterAuthor = info['author']
-        chapterVersion = info['version']
-        chapterDate = info['date']
-        buildDate = jrfuncs.getNiceCurrentDateTime()
-
-        if (renderFormat!='html'):
-            raise Exception('Only html lead rendering currently supported, not "{}".'.format(renderFormat))
-
-        # where to save
-        defaultSaveDir = self.getOptionValThrowException('savedir')
-        saveDir = self.getOptionVal('chapterSaveDir', defaultSaveDir)
-        outFilePath = '{}/{}.html'.format(saveDir,chapterName)
-        outFilePath = self.resolveTemplateVars(outFilePath)
-
-        # sort leads into sections
-        self.sortLeadsIntoSections()
-
-        #
-        jrprint('Rendering leads to: {}'.format(outFilePath))
-        encoding = self.getOptionValThrowException('storyFileEncoding')
-        with open(outFilePath, 'w', encoding=encoding) as outfile:
-            # html start
-            html = '<html>\n'
-            html += '<head><meta http-equiv="Content-type" content="text/html">\n'
-            html += '<link rel="stylesheet" type="text/css" href="hl.css">'
-            html += '<title>{}</title>\n'.format(chapterTitle)
-            html += '</head>\n'
-            html += '<body>\n'
-            outfile.write(html)
-
-            # front page
-            html = ''
-            html += '<div class="chapterTitle">{}</div>\n'.format(chapterTitle)
-            html += '<div class="chapterAuthor">{}</div>\n'.format(chapterAuthor)
-            html += '<div class="chapterVersion">{}</div>\n'.format(chapterVersion)
-            html += '<div class="chapterDate">{}</div>\n'.format(chapterDate)
-            html += '<div class="buildDate">(built {})</div>\n'.format(buildDate)
-            html += '<div class="pagebreakafter"></div>\n'
-            html += '\n\n\n\n'
-            outfile.write(html)
-
-            # leads start
-            html = '<article class="leads">\n'
-            outfile.write(html)
-
-            # iterate sections
-            self.renderSection(self.rootSection, outfile, renderFormat)
-
-            # leads end
-            html += '</article>\n'
-            outfile.write(html)
-
-            # doc end
-            html = '</body>\n'
-            outfile.write(html)
-
-
-
-    def renderSection(self, section, outfile, renderFormat):
-        # leads
-        if ('leads' in section):
-            leads = section['leads']
-            if (len(leads)>0):
-                self.renderSectionLeads(leads, section, outfile, renderFormat)
-        else:
-            # blank leads just show section page
-            if ('label' in section):
-                self.renderSectionLeads({}, section, outfile, renderFormat)
-
-        # recurse children
-        if ('sections' in section):
-            childSections = section['sections']
-            for childid, child in childSections.items():
-                self.renderSection(child, outfile, renderFormat)
-
-
-    def renderSectionLeads(self, leads, section, outfile, renderFormat):
-        renderOptions = self.getOptionValThrowException('renderOptions')
-        renderSectionHeaders = renderOptions['sectionHeaders']
-        renderLeadLabels = renderOptions['leadLabels']
-        renderTextSyntax = renderOptions['textSyntax']
-        optionShowBlankLabels = False
-        #
-        html = ''
-        showedHead = False
-
-        # section header
-        sectionLabel = section['label']
-
-        # iterate leads
-        for leadid, lead in leads.items():
-            leadProperties = lead['properties']
-            id = leadProperties['renderId']
-            #
-            flagRender = leadProperties['render'] if ('render' in leadProperties) else True
-            if (flagRender=='false'):
-                continue
-
-            if (not showedHead):
-                showedHead = True
-                html += '<div class="leadsection">\n'
-                # section breaks
-                if (renderSectionHeaders):
-                    html += '\n\n<h1>{}</h1>\n\n'.format(sectionLabel)
-
-            # lead start
-            html += '<div class="lead">\n'
-
-            # lead label
-            html += '<h2>{}</h2>\n'.format(id)
-            leadLabel = leadProperties['label'] if ('label' in leadProperties) else ''
-            if (renderLeadLabels) and (leadLabel!=''):
-                html += '<h3>{}</h3>\n'.format(leadLabel)
-            else:
-                if (optionShowBlankLabels):
-                    html += '<h3>&nbsp;</h3>\n'
-
-            # lead text
-            txtRenderedToHtml = self.renderTextSyntax(renderTextSyntax, lead['text'])
-            html += '<div class="leadtext">{}</div>\n\n'.format(txtRenderedToHtml)
-
-            # lead end
-            html += '</div> <!-- lead -->\n'
-
-        # end of leads in this section
-        if (showedHead):
-            html += '</div> <!-- lead section -->\n\n'
-
-        # write it
-        outfile.write(html)
-# ---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ---------------------------------------------------------------------------
-    def renderTextSyntax(self, renderTextSyntax, text):
-        if (renderTextSyntax=='html'):
-            # html is as is
-            return text
-        if (renderTextSyntax=='plainText'):
-            # plaintext needs newlines into <p>s
-            text = text.strip()
-            textLines = text.split('\n')
-            html = ''
-            for line in textLines:
-                html += '<p>{}</p>\n'.format(line)
-            return html
-        raise Exception('renderTextSyntax format not understood: {}.'.format(renderTextSyntax))
-# ---------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # ---------------------------------------------------------------------------
     def debug(self):
         jrprint('\n\n---------------------------\n')
@@ -1599,10 +1409,11 @@ class HlParser:
         jrprint('Scan found {} lead files: {}.'.format(len(self.storyFileList), self.storyFileList))
         jrprint('Tag map:\n')
         jrprint(self.tagMap)
-        jrprint('Headblocks:\n')
-        for block in self.headBlocks:
-            blockDebugText = self.calcDebugBlockText(block)
-            jrprint(blockDebugText)
+        if (False):
+            jrprint('Headblocks:\n')
+            for block in self.headBlocks:
+                blockDebugText = self.calcDebugBlockText(block)
+                jrprint(blockDebugText)
         jrprint('---------------------------\n')
 
 
@@ -1880,9 +1691,9 @@ class HlParser:
                             label = lead['properties']['label'] + ' contd.'
                         else:
                             label = ''
-                        leadid = self.migrateChildBlocksToNewLead(headBlock, label, block, blockIndex)
+                        newLead = self.migrateChildBlocksToNewLead(headBlock, label, block, blockIndex)
                         # resume from this blockindex afterwards
-                        txt += '#'+leadid
+                        txt += self.makeTextLinkToLead(newLead)
             else:
                 self.raiseBlockException(self, block, 0, 'Unknown block type "{}"'.format(blockType))
 
@@ -1935,20 +1746,44 @@ class HlParser:
         # now process it (it will not be processed in main loop since it is added after)
         self.processLead(lead)
 
-        return leadId
+        return lead
 # ---------------------------------------------------------------------------
 
 
 
 
 
+# ---------------------------------------------------------------------------
+    def isRenderTextSyntaxMarkdown(self):
+        renderOptions = self.getOptionValThrowException('renderOptions')
+        renderTextSyntax = renderOptions['textSyntax']
+        if (renderTextSyntax=='markdown'):
+            return True
+        return False
+# ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+    def makeTextLinkToLead(self, lead):
+        properties = lead['properties']
+        leadId = properties['id']
+        renderId = properties['renderId']
+        return self.makeTextLinkToLeadId(leadId, renderId)
 
 
-
-
-
+    def makeTextLinkToLeadId(self, leadId, renderId):
+        if (renderId[0].isdigit()):
+            prefix='#'
+        else:
+            prefix = ''
+        #
+        if (self.isRenderTextSyntaxMarkdown()):
+            text = '{}[{}](#{})'.format(prefix, renderId, renderId)
+        else:
+            text = prefix + renderId
+        #
+        return text
+# ---------------------------------------------------------------------------
 
 
 
@@ -1959,33 +1794,29 @@ class HlParser:
         codeText = block['text']
 
         # parse code
-        [funcName, properties, pos] = self.parseFunctionCallAndArgs(block, codeText)
+        [funcName, args, pos] = self.parseFunctionCallAndArgs(block, codeText)
 
         if (funcName=='options'):
             # merge in options
-            jsonOptionString = properties['json']
+            jsonOptionString = args['json']
             jsonOptions = json.loads(jsonOptionString)
             # set the WORKINGDIR options
             self.jroptionsWorkingDir.mergeRawDataForKey('options', jsonOptions)
 
         elif (funcName=='lead'):
             # replace with a lead's rendered id
-            leadId = properties['leadId']
+            leadId = args['leadId']
+            #
             lead = self.findLeadById(leadId)
             if (lead is None):
                 self.raiseBlockException(self, block, 0, 'Unknown lead reference: "{}"'.format(leadId))
-                leadLabel = 'UNKNOWN LEAD ({})'.format(leadId)
-            else:
-                leadLabel = lead['properties']['renderId']
-            if (leadLabel[0].isdigit()):
-                leadLabel = '#' + leadLabel
             #
-            codeResult['text'] = '{}'.format(leadLabel)
+            codeResult['text'] = self.makeTextLinkToLead(lead)
 
         elif (funcName=='tag'):
             # just replace with text referring to a tag
             # map it
-            tagName = properties['tagName']
+            tagName = args['tagName']
             tagDict = self.findOrMakeTagDictForTag(tagName)
 
             # track use
@@ -2000,7 +1831,7 @@ class HlParser:
         elif (funcName=='gaintag'):
             # show someone text that they get a tag
             optionUseTagLetters = self.getTagsAsLetters()
-            tagName = properties['tagName']
+            tagName = args['tagName']
             tagDict = self.findOrMakeTagDictForTag(tagName)
 
             # track use
@@ -2021,7 +1852,7 @@ class HlParser:
         elif (funcName=='havetag'):
             # show someone text that checking a tag
             optionUseTagLetters = self.getTagsAsLetters()
-            tagName = properties['tagName']
+            tagName = args['tagName']
             tagDict = self.findOrMakeTagDictForTag(tagName)
 
             # track use
@@ -2041,7 +1872,7 @@ class HlParser:
         elif (funcName=='missingtag'):
             # show someone text that checking a tag
             optionUseTagLetters = self.getTagsAsLetters()
-            tagName = properties['tagName']
+            tagName = args['tagName']
             tagDict = self.findOrMakeTagDictForTag(tagName)
 
             # track use
@@ -2068,7 +1899,7 @@ class HlParser:
 
         elif (funcName=='insertlead'):
             # insert contents of a lead here
-            leadId = properties['leadId']
+            leadId = args['leadId']
             lead = self.findLeadById(leadId)
             if (lead is None):
                 self.raiseBlockException(self, block, 0, 'Unknown lead reference: "{}"'.format(leadId))
@@ -2077,7 +1908,7 @@ class HlParser:
         else:
             if (True):
                 # debug
-                dbgObj = {'funcName': funcName, 'properties': properties, 'pos': pos}
+                dbgObj = {'funcName': funcName, 'args': args, 'pos': pos}
                 text = json.dumps(dbgObj)
                 codeResult = {'text': text}
                 jrprint('WARNING: code function not understood: {}'.format(text))
@@ -2136,5 +1967,286 @@ class HlParser:
         #
         return label
 # ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ---------------------------------------------------------------------------
+    def renderLeads(self):
+        jrprint('Rendering leads..')
+
+        # options
+        renderOptions = self.getOptionValThrowException('renderOptions')
+        renderFormat = renderOptions['format']
+        #
+        info = self.getOptionValThrowException('info')
+        chapterName = info['chapterName']
+        chapterTitle = info['chapterTitle']
+        chapterAuthor = info['author']
+        chapterVersion = info['version']
+        chapterDate = info['date']
+        buildDate = jrfuncs.getNiceCurrentDateTime()
+
+        if (renderFormat!='html'):
+            raise Exception('Only html lead rendering currently supported, not "{}".'.format(renderFormat))
+
+        # where to save
+        defaultSaveDir = self.getOptionValThrowException('savedir')
+        saveDir = self.getOptionVal('chapterSaveDir', defaultSaveDir)
+        outFilePath = '{}/{}.html'.format(saveDir,chapterName)
+        outFilePath = self.resolveTemplateVars(outFilePath)
+
+        # sort leads into sections
+        self.sortLeadsIntoSections()
+
+        #
+        jrprint('Rendering leads to: {}'.format(outFilePath))
+        encoding = self.getOptionValThrowException('storyFileEncoding')
+        with open(outFilePath, 'w', encoding=encoding) as outfile:
+            # html start
+            html = '<html>\n'
+            html += '<head><meta http-equiv="Content-type" content="text/html">\n'
+            html += '<link rel="stylesheet" type="text/css" href="hl.css">'
+            html += '<title>{}</title>\n'.format(chapterTitle)
+            html += '</head>\n'
+            html += '<body>\n'
+            outfile.write(html)
+
+            # front page
+            html = ''
+            html += '<div class="chapterTitle">{}</div>\n'.format(chapterTitle)
+            html += '<div class="chapterAuthor">{}</div>\n'.format(chapterAuthor)
+            html += '<div class="chapterVersion">{}</div>\n'.format(chapterVersion)
+            html += '<div class="chapterDate">{}</div>\n'.format(chapterDate)
+            html += '<div class="buildDate">(built {})</div>\n'.format(buildDate)
+            html += '<div class="pagebreakafter"></div>\n'
+            html += '\n\n\n\n'
+            outfile.write(html)
+
+            # leads start
+            html = '<article class="leads">\n'
+            outfile.write(html)
+
+            # iterate sections
+            self.renderSection(self.rootSection, outfile, renderFormat)
+
+            # leads end
+            html += '</article>\n'
+            outfile.write(html)
+
+            # doc end
+            html = '</body>\n'
+            outfile.write(html)
+
+
+
+    def renderSection(self, section, outfile, renderFormat):
+        # leads
+        if ('leads' in section):
+            leads = section['leads']
+            if (len(leads)>0):
+                self.renderSectionLeads(leads, section, outfile, renderFormat)
+        else:
+            # blank leads just show section page
+            if ('label' in section):
+                self.renderSectionLeads({}, section, outfile, renderFormat)
+
+        # recurse children
+        if ('sections' in section):
+            childSections = section['sections']
+            for childid, child in childSections.items():
+                self.renderSection(child, outfile, renderFormat)
+
+
+    def renderSectionLeads(self, leads, section, outfile, renderFormat):
+        renderOptions = self.getOptionValThrowException('renderOptions')
+        renderSectionHeaders = renderOptions['sectionHeaders']
+        renderLeadLabels = renderOptions['leadLabels']
+        renderTextSyntax = renderOptions['textSyntax']
+        #
+        showedHead = False
+        #
+        html = ''
+
+        # section header
+        sectionLabel = section['label']
+
+        # iterate leads
+        for leadid, lead in leads.items():
+            leadProperties = lead['properties']
+            id = leadProperties['renderId']
+            #
+            flagRender = leadProperties['render'] if ('render' in leadProperties) else True
+            if (flagRender=='false'):
+                continue
+
+            if (not showedHead):
+                showedHead = True
+                html += '<div class="leadsection">\n'
+                # section breaks
+                if (renderSectionHeaders):
+                    html += '\n\n<h1>{}</h1>\n\n'.format(sectionLabel)
+
+            # lead start
+            html += '<div class="lead">\n'
+
+            # lead label
+            html += '<h2 id="{}">{}</h2>\n'.format(id, id)
+            
+            leadLabel = leadProperties['label'] if ('label' in leadProperties) else ''
+            if (renderLeadLabels) and (leadLabel!=''):
+                html += '<h3>{}</h3>\n'.format(leadLabel)
+
+            # lead text
+            txtRenderedToHtml = self.renderTextSyntax(renderTextSyntax, lead['text'])
+            html += '<div class="leadtext">{}</div>\n\n'.format(txtRenderedToHtml)
+
+            # lead end
+            html += '</div> <!-- lead -->\n'
+
+        # end of leads in this section
+        if (showedHead):
+            html += '</div> <!-- lead section -->\n\n'
+
+        # write it
+        outfile.write(html)
+# ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# ---------------------------------------------------------------------------
+    def renderTextSyntax(self, renderTextSyntax, text):
+        if (renderTextSyntax=='html'):
+            # html is as is
+            return text
+        if (renderTextSyntax=='plainText'):
+            # plaintext needs newlines into <p>s
+            text = text.strip()
+            textLines = text.split('\n')
+            html = ''
+            for line in textLines:
+                html += '<p>{}</p>\n'.format(line)
+            return html
+        if (renderTextSyntax=='markdown'):
+            # markdown
+            # using mistletoe library
+            html = self.renderMarkdown(text)
+            return html
+        #
+        raise Exception('renderTextSyntax format not understood: {}.'.format(renderTextSyntax))
+    
+
+
+    def renderMarkdown(self, text):
+        return self.hlMarkdown.renderMarkdown(text)
+# ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

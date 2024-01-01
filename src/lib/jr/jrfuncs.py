@@ -14,7 +14,6 @@ import datetime
 from functools import reduce
 
 import random
-import numpy.random as npr
 import json
 
 
@@ -445,22 +444,6 @@ def simplifySingleLastName(lastName):
 
 
 #---------------------------------------------------------------------------
-def chooseProbabilisticOption(options):
-    # second element of each option tells us the probability
-    probs = [o[1] for o in options]
-    summedProbs = sum([p for p in probs])
-    probs = [p/summedProbs for p in probs]
-    optionCount = len(options)
-    index = npr.choice(optionCount, p=probs)
-    return options[index][0]
-
-
-def chooseProbabilisticIndex(probs):
-    summedProbs = sum([p for p in probs])
-    probs = [p/summedProbs for p in probs]
-    index = npr.choice(len(probs), p=probs)
-    return index
-
 def replaceSimpleTempatedParams(text, vdict):
     #text = re.sub('\[([^\[\]]*)\]', lambda m: vdict[m.group(1)] if m.group(1) in vdict else 'UNKNOWN FIELD:' + m.group(1), text)
     text = re.sub('\[([^\[\]]*)\]', lambda m: vdict[m.group(1)] , text)
@@ -468,53 +451,7 @@ def replaceSimpleTempatedParams(text, vdict):
 #---------------------------------------------------------------------------
 
 
-#---------------------------------------------------------------------------
-def pickWeightedRandomFromString(text, defaultVal = ''):
-    # helper function to allow us to pick random items from a string, with optional weights (:#)
 
-    # first split string into | or comma separated list
-    if ('|' in text):
-        # split by |
-        choices = text.split('|')
-    else:
-        choices = text.split(',')
-    choices = [c.strip() for c in choices if c.strip() != '']
-
-    # now split into choice :weightnow into weights
-    weightedChoices = []
-    weights = []
-    weightsAreAllOne = True
-    for c in choices:
-        matches = re.match(r'^(.*)\s*\:\s*([\d\.]*)$', c)
-        if (matches is None):
-            weightedChoices.append(c)
-            weightVal = 1.0
-        else:
-            weightedChoices.append(matches[1])
-            weightVal = float(matches[2])
-        weights.append(weightVal)
-        if (weightVal != 1.0):
-            weightsAreAllOne = False
-
-
-    numChoices = len(weightedChoices)
-    if (numChoices==0):
-        retv = defaultVal
-    elif (numChoices==1):
-        retv = weightedChoices[0]
-    elif (weightsAreAllOne):
-        # uniform choice
-        retv = weightedChoices[random.randrange(0,numChoices)]
-    else:
-        # numpy weighted random
-        sumWeight = sum(weights)
-        probs = [w/sumWeight for w in weights]
-        index = npr.choice(numChoices, p=probs)
-        retv = weightedChoices[index]
-    if (retv==''):
-        return defaultVal
-    return retv
-#---------------------------------------------------------------------------
 
 
 #---------------------------------------------------------------------------

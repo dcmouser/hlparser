@@ -1,44 +1,92 @@
 {
-  "children": {
-    "front": {
-      "label": "Front",
-      "sort": 0,
+  "sections": {
+    "Briefings": {
+      "label": "Briefings",
+      "sort": "010",
       "leads": {
         "INTRO": {
+          "block": {
+            "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+            "lineNumber": 44,
+            "type": "header",
+            "text": "",
+            "properties": {
+              "section": "Briefings",
+              "id": "intro",
+              "label": "",
+              "type": "lead",
+              "renderId": "intro",
+              "sectionName": "Briefings"
+            },
+            "blocks": [
+              {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 45,
+                "type": "text",
+                "text": "This is a front intro \n\n",
+                "properties": {}
+              }
+            ]
+          },
           "properties": {
-            "section": "front",
+            "section": "Briefings",
             "id": "intro",
             "label": "",
             "type": "lead",
             "renderId": "intro",
-            "sectionName": "front"
+            "sectionName": "Briefings"
           },
           "text": "This is a front intro",
           "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-          "startLine": 26
+          "lineNumber": 44,
+          "leadIndex": 8
         }
       }
     },
-    "Leads": {
-      "label": "Leads",
-      "sort": 10,
-      "children": {
+    "Main": {
+      "label": "Main Leads",
+      "sort": "050",
+      "sections": {
         "0": {
           "label": "0",
           "sort": "000000",
           "leads": {
             "0-0000": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 16,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "existing": "defer",
+                  "id": "0-0000",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "0-0000",
+                  "sectionName": "Main.0"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 17,
+                    "type": "text",
+                    "text": "Another *dead* promise. I had vowed to stop wasting off-duty hours inside The Metropolitan Museum of Art. But here I am, staring at a painting that doesn\u2019t belong here. \nBut here is another line\nand yet another\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "existing": "defer",
                 "id": "0-0000",
                 "label": "",
                 "type": "lead",
                 "renderId": "0-0000",
-                "sectionName": "Leads.0"
+                "sectionName": "Main.0"
               },
-              "text": "Another dead promise. I had vowed to stop wasting off-duty hours inside The Metropolitan Museum of Art. But here I am, staring at a painting that doesn\u2019t belong here. \nBut here is another line\nand yet another",
+              "text": "Another *dead* promise. I had vowed to stop wasting off-duty hours inside The Metropolitan Museum of Art. But here I am, staring at a painting that doesn\u2019t belong here. \nBut here is another line\nand yet another",
               "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 0
+              "lineNumber": 16,
+              "leadIndex": 0
             }
           }
         },
@@ -47,28 +95,101 @@
           "sort": "000001",
           "leads": {
             "1-1267": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 24,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "existing": "overwrite",
+                  "id": "1-1267",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "1-1267",
+                  "sectionName": "Main.1"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 25,
+                    "type": "text",
+                    "text": "If you have uncovered the codeword deception, go to ",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 25,
+                    "type": "code",
+                    "text": "lead(17-1234)",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 25,
+                    "type": "text",
+                    "text": ".\nOtherwise go to ",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 26,
+                    "type": "code",
+                    "text": "jumplead()",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  }
+                ]
+              },
               "properties": {
+                "existing": "overwrite",
                 "id": "1-1267",
                 "label": "",
                 "type": "lead",
                 "renderId": "1-1267",
-                "sectionName": "Leads.1"
+                "sectionName": "Main.1"
               },
-              "text": "If you have uncovered the codeword deception, read lead 1-5566. Otherwise, Lieutenant Lockwood knocks on the door, but receives no answer.",
-              "sourceLabel": "FILE \"tests/test1/leads\\sub1/moreLeads.txt\"",
-              "startLine": 3
+              "text": "If you have uncovered the codeword deception, go to #[17-1234](#17-1234).\nOtherwise go to #[6-4220](#6-4220)",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "lineNumber": 24,
+              "leadIndex": 2
             },
             "1-3018": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads\\sub1/moreLeads.txt\"",
+                "lineNumber": 0,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "1-3018",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "1-3018",
+                  "sectionName": "Main.1"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads\\sub1/moreLeads.txt\"",
+                    "lineNumber": 1,
+                    "type": "text",
+                    "text": "It turns out that Harry knows the doorman at 10 Downing Street Apartments.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "id": "1-3018",
                 "label": "",
                 "type": "lead",
                 "renderId": "1-3018",
-                "sectionName": "Leads.1"
+                "sectionName": "Main.1"
               },
               "text": "It turns out that Harry knows the doorman at 10 Downing Street Apartments.",
               "sourceLabel": "FILE \"tests/test1/leads\\sub1/moreLeads.txt\"",
-              "startLine": 0
+              "lineNumber": 0,
+              "leadIndex": 10
             }
           }
         },
@@ -77,6 +198,30 @@
           "sort": "000005",
           "leads": {
             "TESTDYNID": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 38,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "warning": "Check this",
+                  "autoid": "true",
+                  "id": "test dyn id",
+                  "label": "A dynamic id label",
+                  "type": "lead",
+                  "renderId": "5-9903",
+                  "sectionName": "Main.5"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 39,
+                    "type": "text",
+                    "text": "Here is text for a dynamic numbered lead\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "warning": "Check this",
                 "autoid": "true",
@@ -84,11 +229,53 @@
                 "label": "A dynamic id label",
                 "type": "lead",
                 "renderId": "5-9903",
-                "sectionName": "Leads.5"
+                "sectionName": "Main.5"
               },
               "text": "Here is text for a dynamic numbered lead",
               "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 20
+              "lineNumber": 38,
+              "leadIndex": 6
+            }
+          }
+        },
+        "6": {
+          "label": "6",
+          "sort": "000006",
+          "leads": {
+            "6-4220": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 26,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "6-4220",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "6-4220",
+                  "sectionName": "Main.6"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 26,
+                    "type": "text",
+                    "text": "\nLieutenant Lockwood knocks on the door, but receives no answer.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "6-4220",
+                "label": "",
+                "type": "lead",
+                "renderId": "6-4220",
+                "sectionName": "Main.6"
+              },
+              "text": "Lieutenant Lockwood knocks on the door, but receives no answer.",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "lineNumber": 26,
+              "leadIndex": 11
             }
           }
         },
@@ -97,16 +284,39 @@
           "sort": "000007",
           "leads": {
             "7-5322": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 21,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "7-5322",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "7-5322",
+                  "sectionName": "Main.7"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 22,
+                    "type": "text",
+                    "text": "This is a seven section lead.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "id": "7-5322",
                 "label": "",
                 "type": "lead",
                 "renderId": "7-5322",
-                "sectionName": "Leads.7"
+                "sectionName": "Main.7"
               },
               "text": "This is a seven section lead.",
               "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 5
+              "lineNumber": 21,
+              "leadIndex": 1
             }
           }
         },
@@ -115,16 +325,39 @@
           "sort": "000017",
           "leads": {
             "17-1234": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 41,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "17-1234",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "17-1234",
+                  "sectionName": "Main.17"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 42,
+                    "type": "text",
+                    "text": "This is a lead with a 17 header\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "id": "17-1234",
                 "label": "",
                 "type": "lead",
                 "renderId": "17-1234",
-                "sectionName": "Leads.17"
+                "sectionName": "Main.17"
               },
               "text": "This is a lead with a 17 header",
               "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 23
+              "lineNumber": 41,
+              "leadIndex": 7
             }
           }
         },
@@ -132,29 +365,75 @@
           "label": "NW",
           "sort": "NW",
           "leads": {
-            "23NW": {
-              "properties": {
-                "id": "23 NW",
-                "label": "",
-                "type": "lead",
-                "renderId": "23 NW",
-                "sectionName": "Leads.NW"
-              },
-              "text": "This is a different NW 23 lead",
-              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 17
-            },
             "NW 22": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 32,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "NW 22",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "NW 22",
+                  "sectionName": "Main.NW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 33,
+                    "type": "text",
+                    "text": "This is new 22 lead in North West\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "id": "NW 22",
                 "label": "",
                 "type": "lead",
                 "renderId": "NW 22",
-                "sectionName": "Leads.NW"
+                "sectionName": "Main.NW"
               },
               "text": "This is new 22 lead in North West",
               "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 14
+              "lineNumber": 32,
+              "leadIndex": 4
+            },
+            "23NW": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 35,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "23 NW",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "23 NW",
+                  "sectionName": "Main.NW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 36,
+                    "type": "text",
+                    "text": "This is a different NW 23 lead\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "23 NW",
+                "label": "",
+                "type": "lead",
+                "renderId": "23 NW",
+                "sectionName": "Main.NW"
+              },
+              "text": "This is a different NW 23 lead",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "lineNumber": 35,
+              "leadIndex": 5
             }
           }
         },
@@ -163,37 +442,84 @@
           "sort": "SW",
           "leads": {
             "SW 53": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 29,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "sw53",
+                  "label": "",
+                  "type": "lead",
+                  "renderId": "sw53",
+                  "sectionName": "Main.SW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                    "lineNumber": 30,
+                    "type": "text",
+                    "text": "This is SW 53 lead\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
               "properties": {
                 "id": "sw53",
                 "label": "",
                 "type": "lead",
                 "renderId": "sw53",
-                "sectionName": "Leads.SW"
+                "sectionName": "Main.SW"
               },
               "text": "This is SW 53 lead",
               "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-              "startLine": 11
+              "lineNumber": 29,
+              "leadIndex": 3
             }
           }
         }
       }
     },
-    "back": {
-      "label": "Back",
-      "sort": 20,
+    "End": {
+      "label": "End",
+      "sort": "100",
       "leads": {
         "FINALE": {
+          "block": {
+            "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+            "lineNumber": 47,
+            "type": "header",
+            "text": "",
+            "properties": {
+              "section": "End",
+              "id": "finale",
+              "label": "",
+              "type": "lead",
+              "renderId": "finale",
+              "sectionName": "End"
+            },
+            "blocks": [
+              {
+                "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+                "lineNumber": 48,
+                "type": "text",
+                "text": "This is a finale back stff.\n\n",
+                "properties": {}
+              }
+            ]
+          },
           "properties": {
-            "section": "back",
+            "section": "End",
             "id": "finale",
             "label": "",
             "type": "lead",
             "renderId": "finale",
-            "sectionName": "back"
+            "sectionName": "End"
           },
           "text": "This is a finale back stff.",
           "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
-          "startLine": 29
+          "lineNumber": 47,
+          "leadIndex": 9
         }
       }
     }
