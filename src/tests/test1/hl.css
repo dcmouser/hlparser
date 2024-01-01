@@ -1,0 +1,103 @@
+@font-face { 
+    font-family: 'Whitney';
+    src: url('fonts/WhitneyCondensed Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face { 
+    font-family: 'BellGothicStdLight';
+    src: url('fonts/BellGothicStd-Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face { 
+    font-family: 'BellGothicStdBold';
+    src: url('fonts/BellGothicStd-Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face { 
+    font-family: 'BellGothicStdBlack';
+    src: url('fonts/BellGothicStd-Black.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+/*
+article {
+    column-count: 2;
+		column-gap: 3em;
+		column-rule: 0.25em solid #000000;
+		column-fill: auto;
+}
+*/
+
+.leadsection {
+	break-before: always;
+  page-break-before: always;
+
+    column-count: 2;
+		column-gap: 3em;
+		column-rule: 0.25em solid #000000;
+		column-fill: auto;
+}
+
+
+.pagebreakafter {
+	break-after: always;
+  page-break-after: always;
+}
+
+.lead {
+}
+
+
+h1 {
+	font-size: 130px;
+	padding-top: 0px;
+	margin-top: 0px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;	
+}
+
+
+h2 {
+	font-weight: bold;
+	padding-bottom: 0px;
+	margin-bottom: 0px;	
+	padding-top: 40px;
+}
+
+h3 {
+	font-weight: bold;
+	font-size: small;
+	padding-top: 0px;
+	margin-top: 0px;
+}
+
+
+
+
+
+.chapterTitle, .chapterAuthor, .chapterVersion, .chapterDate  {
+	font-size: xx-large;
+	font-weight: bold;
+	text-align: center;
+}
+
+.chapterTitle {
+	padding-top: 100px;
+	padding-bottom: 20px;
+}
+
+.chapterAuthor, .chapterVersion, .chapterDate  {
+	font-size: large;
+}
+
+.buildDate  {
+	font-size: small;
+	text-align: center;
+}

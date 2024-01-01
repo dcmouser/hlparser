@@ -1,0 +1,201 @@
+{
+  "children": {
+    "front": {
+      "label": "Front",
+      "sort": 0,
+      "leads": {
+        "INTRO": {
+          "properties": {
+            "section": "front",
+            "id": "intro",
+            "label": "",
+            "type": "lead",
+            "renderId": "intro",
+            "sectionName": "front"
+          },
+          "text": "This is a front intro",
+          "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+          "startLine": 26
+        }
+      }
+    },
+    "Leads": {
+      "label": "Leads",
+      "sort": 10,
+      "children": {
+        "0": {
+          "label": "0",
+          "sort": "000000",
+          "leads": {
+            "0-0000": {
+              "properties": {
+                "existing": "defer",
+                "id": "0-0000",
+                "label": "",
+                "type": "lead",
+                "renderId": "0-0000",
+                "sectionName": "Leads.0"
+              },
+              "text": "Another dead promise. I had vowed to stop wasting off-duty hours inside The Metropolitan Museum of Art. But here I am, staring at a painting that doesn\u2019t belong here. \nBut here is another line\nand yet another",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 0
+            }
+          }
+        },
+        "1": {
+          "label": "1",
+          "sort": "000001",
+          "leads": {
+            "1-1267": {
+              "properties": {
+                "id": "1-1267",
+                "label": "",
+                "type": "lead",
+                "renderId": "1-1267",
+                "sectionName": "Leads.1"
+              },
+              "text": "If you have uncovered the codeword deception, read lead 1-5566. Otherwise, Lieutenant Lockwood knocks on the door, but receives no answer.",
+              "sourceLabel": "FILE \"tests/test1/leads\\sub1/moreLeads.txt\"",
+              "startLine": 3
+            },
+            "1-3018": {
+              "properties": {
+                "id": "1-3018",
+                "label": "",
+                "type": "lead",
+                "renderId": "1-3018",
+                "sectionName": "Leads.1"
+              },
+              "text": "It turns out that Harry knows the doorman at 10 Downing Street Apartments.",
+              "sourceLabel": "FILE \"tests/test1/leads\\sub1/moreLeads.txt\"",
+              "startLine": 0
+            }
+          }
+        },
+        "5": {
+          "label": "5",
+          "sort": "000005",
+          "leads": {
+            "TESTDYNID": {
+              "properties": {
+                "warning": "Check this",
+                "autoid": "true",
+                "id": "test dyn id",
+                "label": "A dynamic id label",
+                "type": "lead",
+                "renderId": "5-9903",
+                "sectionName": "Leads.5"
+              },
+              "text": "Here is text for a dynamic numbered lead",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 20
+            }
+          }
+        },
+        "7": {
+          "label": "7",
+          "sort": "000007",
+          "leads": {
+            "7-5322": {
+              "properties": {
+                "id": "7-5322",
+                "label": "",
+                "type": "lead",
+                "renderId": "7-5322",
+                "sectionName": "Leads.7"
+              },
+              "text": "This is a seven section lead.",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 5
+            }
+          }
+        },
+        "17": {
+          "label": "17",
+          "sort": "000017",
+          "leads": {
+            "17-1234": {
+              "properties": {
+                "id": "17-1234",
+                "label": "",
+                "type": "lead",
+                "renderId": "17-1234",
+                "sectionName": "Leads.17"
+              },
+              "text": "This is a lead with a 17 header",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 23
+            }
+          }
+        },
+        "NW": {
+          "label": "NW",
+          "sort": "NW",
+          "leads": {
+            "23NW": {
+              "properties": {
+                "id": "23 NW",
+                "label": "",
+                "type": "lead",
+                "renderId": "23 NW",
+                "sectionName": "Leads.NW"
+              },
+              "text": "This is a different NW 23 lead",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 17
+            },
+            "NW 22": {
+              "properties": {
+                "id": "NW 22",
+                "label": "",
+                "type": "lead",
+                "renderId": "NW 22",
+                "sectionName": "Leads.NW"
+              },
+              "text": "This is new 22 lead in North West",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 14
+            }
+          }
+        },
+        "SW": {
+          "label": "SW",
+          "sort": "SW",
+          "leads": {
+            "SW 53": {
+              "properties": {
+                "id": "sw53",
+                "label": "",
+                "type": "lead",
+                "renderId": "sw53",
+                "sectionName": "Leads.SW"
+              },
+              "text": "This is SW 53 lead",
+              "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+              "startLine": 11
+            }
+          }
+        }
+      }
+    },
+    "back": {
+      "label": "Back",
+      "sort": 20,
+      "leads": {
+        "FINALE": {
+          "properties": {
+            "section": "back",
+            "id": "finale",
+            "label": "",
+            "type": "lead",
+            "renderId": "finale",
+            "sectionName": "back"
+          },
+          "text": "This is a finale back stff.",
+          "sourceLabel": "FILE \"tests/test1/leads/test1leads.txt\"",
+          "startLine": 29
+        }
+      }
+    }
+  }
+}

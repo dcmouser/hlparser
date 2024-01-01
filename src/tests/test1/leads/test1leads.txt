@@ -1,0 +1,31 @@
+# 0-0000 (existing=defer)
+Another dead promise. I had vowed to stop wasting off-duty hours inside The Metropolitan Museum of Art. But here I am, staring at a painting that doesn’t belong here. 
+But here is another line
+and yet another
+
+# 7-5322
+This is a seven section lead.
+
+# 1-1267 (existing=defer)
+If you have uncovered the codeword deception, read lead 1-5566. Otherwise, Lieutenant Lockwood knocks on the door, but receives no answer.
+
+# sw53
+This is SW 53 lead
+
+# NW 22
+This is new 22 lead in North West
+
+# 23 NW
+This is a different NW 23 lead
+
+# test dyn id: A dynamic id label (warning="Check this", autoid=true)
+Here is text for a dynamic numbered lead
+
+# 17-1234
+This is a lead with a 17 header
+
+# intro (section=front)
+This is a front intro 
+
+# finale (section=back)
+This is a finale back stff.

@@ -1,0 +1,19 @@
+{
+	"workingdir": "tests/dropDead", 
+	"outputFormat": "json",
+	"storyDirectories": ["$workingdir/leads"],
+	"storyFileEncoding": "utf-8",
+	"shorthandParsingOptions": {
+		"simpleLeads": true
+	},
+	"unusedLeadFile": "$basedir/options/unusedLeads.csv",
+	"renderOptions": {
+		"format": "html",
+		"textSyntax": "plainText",
+		"leadLabels": true,
+		"sectionHeaders": true,
+		"index": true
+	},
+	"tagsAsLetters": true
+}
+
