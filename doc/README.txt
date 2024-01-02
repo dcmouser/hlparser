@@ -1,6 +1,3 @@
-# hlparser
-Utility for processing High &amp; Low Game Book Stories into Books
-
 The hl parser tool is used to create game books for games like Sherlock Holmes Consulting Detective.
 It was created to support a new game system calleed "High & Low".
 

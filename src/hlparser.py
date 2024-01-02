@@ -21,7 +21,6 @@ import argparse
 
 
 
-
 # ---------------------------------------------------------------------------
 class HlParser:
 
@@ -40,6 +39,7 @@ class HlParser:
         self.tagLabelsAvailable = [] #list(map(chr, range(ord('A'), ord('Z')+1)))
         self.tagLabelStage = 0
         random.shuffle(self.tagLabelsAvailable)
+        self.userVars = {}
         #
         self.argDefs = {
             'header': {
@@ -50,12 +50,14 @@ class HlParser:
             'tag': {'named': ['tagName'], 'positional': ['tagName'], 'required': ['tagName']},
             'lead': {'named': ['leadId'], 'positional': ['leadId'], 'required': ['leadId']},
             'options': {'named': ['json'], 'positional': ['json'], 'required': ['json']},
-            'jumplead': {},
+            'jumplead': {'named': ['id'], 'positional': ['id']},
             'gaintag': {'named': ['tagName'], 'positional': ['tagName'], 'required': ['tagName']},
             'havetag': {'named': ['tagName'], 'positional': ['tagName'], 'required': ['tagName']},
             'missingtag': {'named': ['tagName'], 'positional': ['tagName'], 'required': ['tagName']},
             'endjump': {},
             'insertlead': {'named': ['leadId'], 'positional': ['leadId'], 'required': ['leadId']},
+            'get': {'named': ['varName'], 'positional': ['varName'], 'required': ['varName']},
+            'set': {'named': ['varName', 'value'], 'positional': ['varName', 'value'], 'required': ['varName', 'value']}
         }
         #
         self.doLoadAllOptions(optionsDirPath, overrideOptions)
@@ -570,18 +572,33 @@ class HlParser:
             properties['type'] = defaultHeaderType
 
         # special ids
-        if (id=='options'):
-            properties['type']= 'options'
-            properties['raw'] = True
-        if (id=='comments'):
-            properties['type']= 'comments'
-            properties['raw'] = True
+        self.handleSpecialHeadIdProperties(id, properties)
+
 
         # store properties
         block['properties'] = properties
 
         return block
 # ---------------------------------------------------------------------------
+
+
+
+# ---------------------------------------------------------------------------
+    def handleSpecialHeadIdProperties(self, id, properties):
+        # kludge to handle specially named head leads/sections
+        if (id=='options'):
+            properties['type']= 'options'
+            properties['raw'] = True
+        if (id=='comments'):
+            properties['type']= 'comments'
+            properties['raw'] = True
+        if (id=='cover'):
+            properties['noid']= True
+            properties['section'] = 'cover'
+            properties['pageBreakAfter'] = True
+# ---------------------------------------------------------------------------
+
+
 
 
 # ---------------------------------------------------------------------------
@@ -1294,6 +1311,8 @@ class HlParser:
         #self.createRootChildSection('Leads', 'Leads', '020')
         #self.createRootChildSection('Back', 'Back', '030')
 
+        self.addMissingSections()
+
         #
         for leadId, lead in self.leads.items():
             section = self.calcSectionForLead(lead)
@@ -1308,20 +1327,24 @@ class HlParser:
 
     def getDefaultSections(self):
         defaultSections = {
-		"Briefings": {"label": "Briefings", "sort": "010"},
-		"Main": {"label": "Main Leads", "sort": "050"},
-		"End": {"label": "End", "sort": "100"},
+		"Briefings": {"label": "Briefings", "sort": "010", "leadsort": "index"},
+		"Main": {"label": "Main Leads", "sort": "050", "leadsort": "alpha"},
+		"End": {"label": "End", "sort": "100", "leadsort": "index"},
 	    }
-
         return defaultSections
+    
 
-    def createRootChildSection(self, id, label, sortOrder):
+    def addMissingSections(self):
+        if ('cover' not in self.rootSection['sections']):
+            self.createRootChildSection('cover','', '002', 'index')
+
+    def createRootChildSection(self, id, label, sortOrder, leadSort):
         parentSection = self.rootSection
         if ('sections' not in parentSection):
             # no children, add it
             parentSection['sections'] = {}
         if (id not in parentSection['sections']):
-            parentSection['sections'][id] = {'label': label, 'sort': sortOrder}
+            parentSection['sections'][id] = {'label': label, 'sort': sortOrder, 'leadSort': leadSort}
 
 
     def sortSection(self, section, leadSort):
@@ -1691,7 +1714,9 @@ class HlParser:
                             label = lead['properties']['label'] + ' contd.'
                         else:
                             label = ''
-                        newLead = self.migrateChildBlocksToNewLead(headBlock, label, block, blockIndex)
+                        #
+                        forcedLeadId = jrfuncs.getDictValueOrDefault(codeResult['args'], 'id', '')
+                        newLead = self.migrateChildBlocksToNewLead(headBlock, label, block, blockIndex, forcedLeadId)
                         # resume from this blockindex afterwards
                         txt += self.makeTextLinkToLead(newLead)
             else:
@@ -1705,12 +1730,16 @@ class HlParser:
 
 
 # ---------------------------------------------------------------------------
-    def migrateChildBlocksToNewLead(self, headBlock, label, block, blockIndex):
+    def migrateChildBlocksToNewLead(self, headBlock, label, block, blockIndex, forcedLeadId):
         # create new lead
         properties = {}
 
-        # dynamically generated lead id
-        leadId = self.consumeUnusedLeadId()
+        # dynamically generated lead id? or forced
+        if (forcedLeadId==''):
+            leadId = self.consumeUnusedLeadId()
+        else:
+            leadId = forcedLeadId
+        #
         # create a new head block with stats from this block
         if (label!=''):
             headerString ='{}: {}'.format(leadId, label)
@@ -1783,7 +1812,38 @@ class HlParser:
             text = prefix + renderId
         #
         return text
+
+
+    def makeInserTagLabelText(self, tagLabel):
+        if (self.isRenderTextSyntaxMarkdown()):
+            text = '"**{}**"'.format(tagLabel)
+        else:
+            text = '"{}"'.format(tagLabel)
+        return text
 # ---------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1840,11 +1900,11 @@ class HlParser:
             tagDict['useNotes'].append(useNote)
 
             # use it
-            tagLabel = tagDict['label']
+            tagLabel = self.makeInserTagLabelText(tagDict['label'])
             if (optionUseTagLetters):
-                text = 'You have gained the requirement letter "{}"; please circle this letter in your records for later use (if you have not done so already).'.format(tagLabel)
+                text = '* You have gained the requirement letter {}; please circle this letter in your records for later use (if you have not done so already).'.format(tagLabel)
             else:
-                text = 'You have gained the requirement keyword "{}"; please note this keyword in your records for later use (if you have not done so already).'.format(tagLabel)
+                text = '* You have gained the requirement keyword {}; please note this keyword in your records for later use (if you have not done so already).'.format(tagLabel)
             #
             codeResult['text'] = text
 
@@ -1861,11 +1921,11 @@ class HlParser:
             tagDict['useNotes'].append(useNote)
 
             # use it
-            tagLabel = tagDict['label']
+            tagLabel = self.makeInserTagLabelText(tagDict['label'])
             if (optionUseTagLetters):
-                text = 'If you have gained (circled) the requirement letter "{}"'.format(tagLabel)
+                text = '* If you have gained (circled) the requirement letter {}'.format(tagLabel)
             else:
-                text = 'If you have gained the requirement keyword "{}"'.format(tagLabel)
+                text = '* If you have gained the requirement keyword {}'.format(tagLabel)
             codeResult['text'] = text
 
 
@@ -1881,17 +1941,18 @@ class HlParser:
             tagDict['useNotes'].append(useNote)
 
             # use it
-            tagLabel = tagDict['label']
+            tagLabel = self.makeInserTagLabelText(tagDict['label'])
             if (optionUseTagLetters):
-                text = 'If you have *NOT* gained (circled) the requirement letter "*{}*"'.format(tagLabel)
+                text = '* If you have *NOT* gained (circled) the requirement letter {}'.format(tagLabel)
             else:
-                text = 'If you have *NOT* gained the requirement keyword "*{}*"'.format(tagLabel)
+                text = '* If you have *NOT* gained the requirement keyword {}'.format(tagLabel)
             codeResult['text'] = text
 
         elif (funcName=='jumplead'):
             # tricky one, this moves the subsqeuent text blocks into a new dynamically assigned lead and returns the lead #
             codeResult['text'] = ''
             codeResult['action'] = 'jumplead'
+            codeResult['args'] = args
 
         elif (funcName=='endjump'):
             # tricky one, this moves the subsqeuent text blocks into a new dynamically assigned lead and returns the lead #
@@ -1905,6 +1966,19 @@ class HlParser:
                 self.raiseBlockException(self, block, 0, 'Unknown lead reference: "{}"'.format(leadId))
             text = self.evaluateHeadBlockTextCode(lead)
             codeResult['text'] = text
+        elif (funcName=='get'):
+            # insert contents of a lead here
+            varName = args['varName']
+            var = self.getUserVariable(varName)
+            if (var is None):
+                self.raiseBlockException(self, block, 0, 'Unknown user variable: "{}"'.format(varName))
+            codeResult['text'] = var['value']
+        elif (funcName=='set'):
+            # insert contents of a lead here
+            varName = args['varName']
+            varVal = args['value']
+            self.setUserVariable(varName, varVal)
+            codeResult['text'] = ''
         else:
             if (True):
                 # debug
@@ -1918,6 +1992,22 @@ class HlParser:
 
         return codeResult
 # ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+    # user setable variables
+    def getUserVariable(self, varName):
+        # specials
+        if (varName=='buildDate'):
+            return {'value':jrfuncs.getNiceCurrentDateTime()}
+        return self.userVars[varName]
+    def setUserVariable(self, varName, value):
+        if (varName not in self.userVars):
+            self.userVars[varName] = {}
+        self.userVars[varName]['value'] = value
+# ---------------------------------------------------------------------------
+
+
 
 
 
@@ -2052,13 +2142,16 @@ class HlParser:
         # options
         renderOptions = self.getOptionValThrowException('renderOptions')
         renderFormat = renderOptions['format']
+        optionCssdocstyle = self.getOptionValThrowException('cssdocstyle')
         #
         info = self.getOptionValThrowException('info')
-        chapterName = info['chapterName']
-        chapterTitle = info['chapterTitle']
-        chapterAuthor = info['author']
-        chapterVersion = info['version']
-        chapterDate = info['date']
+        chapterName = jrfuncs.getDictValueOrDefault(info, 'chapterName', '')
+        chapterTitle = jrfuncs.getDictValueOrDefault(info, 'chapterTitle', '')
+        if (chapterTitle==''):
+            chapterTitle = chapterName
+        chapterAuthor = jrfuncs.getDictValueOrDefault(info, 'author', '')
+        chapterVersion = jrfuncs.getDictValueOrDefault(info, 'version', '')
+        chapterDate = jrfuncs.getDictValueOrDefault(info, 'date', '')
         buildDate = jrfuncs.getNiceCurrentDateTime()
 
         if (renderFormat!='html'):
@@ -2082,30 +2175,38 @@ class HlParser:
             html += '<head><meta http-equiv="Content-type" content="text/html">\n'
             html += '<link rel="stylesheet" type="text/css" href="hl.css">'
             html += '<title>{}</title>\n'.format(chapterTitle)
+            html += '<!-- BUILT {} -->\n'.format(jrfuncs.getNiceCurrentDateTime())
             html += '</head>\n'
             html += '<body>\n'
             outfile.write(html)
 
             # front page
-            html = ''
-            html += '<div class="chapterTitle">{}</div>\n'.format(chapterTitle)
-            html += '<div class="chapterAuthor">{}</div>\n'.format(chapterAuthor)
-            html += '<div class="chapterVersion">{}</div>\n'.format(chapterVersion)
-            html += '<div class="chapterDate">{}</div>\n'.format(chapterDate)
-            html += '<div class="buildDate">(built {})</div>\n'.format(buildDate)
-            html += '<div class="pagebreakafter"></div>\n'
-            html += '\n\n\n\n'
-            outfile.write(html)
+            # ATTN: we now just let user make cover page
+            if (False):
+                html = ''
+                html += '<div class="chapterTitle">{}</div>\n'.format(chapterTitle)
+                html += '<div class="chapterAuthor">{}</div>\n'.format(chapterAuthor)
+                html += '<div class="chapterVersion">{}</div>\n'.format(chapterVersion)
+                html += '<div class="chapterDate">{}</div>\n'.format(chapterDate)
+                html += '<div class="buildDate">(built {})</div>\n'.format(buildDate)
+                html += '<div class="pagebreakafter"></div>\n'
+                html += '\n\n\n\n'
+                outfile.write(html)
+
+
+            # special cover section
+            self.renderSection(self.rootSection['sections']['cover'], outfile, renderFormat, [])
+
 
             # leads start
-            html = '<article class="leads">\n'
+            html = '<article class="leads {}">\n'.format(optionCssdocstyle)
             outfile.write(html)
 
             # iterate sections
-            self.renderSection(self.rootSection, outfile, renderFormat)
+            self.renderSection(self.rootSection, outfile, renderFormat, ['cover'])
 
             # leads end
-            html += '</article>\n'
+            html = '</article>\n'
             outfile.write(html)
 
             # doc end
@@ -2114,7 +2215,7 @@ class HlParser:
 
 
 
-    def renderSection(self, section, outfile, renderFormat):
+    def renderSection(self, section, outfile, renderFormat, skipSectionList):
         # leads
         if ('leads' in section):
             leads = section['leads']
@@ -2122,14 +2223,15 @@ class HlParser:
                 self.renderSectionLeads(leads, section, outfile, renderFormat)
         else:
             # blank leads just show section page
-            if ('label' in section):
+            if ('label' in section) and (section['label']!=''):
                 self.renderSectionLeads({}, section, outfile, renderFormat)
 
         # recurse children
         if ('sections' in section):
             childSections = section['sections']
             for childid, child in childSections.items():
-                self.renderSection(child, outfile, renderFormat)
+                if (childid not in skipSectionList):
+                    self.renderSection(child, outfile, renderFormat, skipSectionList)
 
 
     def renderSectionLeads(self, leads, section, outfile, renderFormat):
@@ -2159,15 +2261,17 @@ class HlParser:
                 html += '<div class="leadsection">\n'
                 # section breaks
                 if (renderSectionHeaders):
-                    html += '\n\n<h1>{}</h1>\n\n'.format(sectionLabel)
+                    if (sectionLabel!=''):
+                        html += '\n\n<h1>{}</h1>\n\n'.format(sectionLabel)
 
             # lead start
-            html += '<div class="lead">\n'
+            html += '<div id="{}" class="lead">\n'.format(id)
 
             # lead label
-            html += '<h2 id="{}">{}</h2>\n'.format(id, id)
+            if (not jrfuncs.getDictValueOrDefault(leadProperties, 'noid', False)):
+                html += '<h2>{}</h2>\n'.format(id)
             
-            leadLabel = leadProperties['label'] if ('label' in leadProperties) else ''
+            leadLabel = jrfuncs.getDictValueOrDefault(leadProperties,'label', '')
             if (renderLeadLabels) and (leadLabel!=''):
                 html += '<h3>{}</h3>\n'.format(leadLabel)
 
@@ -2177,6 +2281,9 @@ class HlParser:
 
             # lead end
             html += '</div> <!-- lead -->\n'
+
+            if (jrfuncs.getDictValueOrDefault(leadProperties, 'pageBreakAfter', False)):
+                html += '<div class="pagebreakafter"></div>\n'
 
         # end of leads in this section
         if (showedHead):

@@ -1,5 +1,5 @@
 {
-	"workingdir": "tests/dropDead", 
+	"workingdir": "tests/test1", 
 	"outputFormat": "json",
 	"storyDirectories": ["$workingdir/leads"],
 	"storyFileEncoding": "utf-8",
@@ -16,6 +16,7 @@
 		"index": true,
 		"markdown": {"forceLinebreaks": true}
 	},
+	"cssdocstyle": "onecolumn",
 	"tagsAsLetters": true
 }
 

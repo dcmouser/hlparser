@@ -54,7 +54,8 @@ class JrOptions:
         if (keyCat not in self.dataDict):
             self.dataDict[keyCat] = keyDict
         else:
-            self.dataDict[keyCat] = {**self.dataDict[keyCat], ** keyDict}
+            jrfuncs.deepMergeOverwriteA(self.dataDict[keyCat], keyDict)
+            #self.dataDict[keyCat] = {**self.dataDict[keyCat], ** keyDict}
         self.setKeyBlockDirtyFlag(keyCat, True)
 
 

@@ -371,6 +371,22 @@ def setDictValuesIfMissing(pdict, defaultDictFields):
         if (key not in pdict):
             pdict[key] = defaultDictFields[key]
     return pdict
+
+
+
+def deepMergeOverwriteA(a, b, path=None):
+    "merges b into a and overrides a when conflict"
+    if path is None: path = []
+    for key in b:
+        if key in a:
+            if isinstance(a[key], dict) and isinstance(b[key], dict):
+                deepMerge(a[key], b[key], path + [str(key)])
+            else:
+                # replace a with b
+                a[key] = b[key]
+        else:
+            a[key] = b[key]
+    return a
 #---------------------------------------------------------------------------
 
 

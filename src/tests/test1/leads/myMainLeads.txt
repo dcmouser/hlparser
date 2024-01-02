@@ -1,0 +1,60 @@
+# cover
+## **TEST CASE**
+by Jesse Reichler
+v1.3 - January 1, 2023
+
+// A test case to demonstrate the hl parser
+
+
+
+# options
+{
+	"info": {
+		"chapterName": "Test",
+		"chapterTitle": "Test Case"
+	},
+	"cssdocstyle": "twocolumn"
+}
+
+
+# 22 NW: Home of our Mentor
+We knock on the door but Holmes appears to have left home.
+
+# 15 NW: Mrs. Brown
+Mrs. Brown throws pans at us when she sees us from the window
+
+# 24 NW: The Locked Door
+Wiggins appears to have left his lock pick at home.
+
+# 7 SW: An Encounter with a Taxi
+The cab splashes water all over us.
+$gaintag(wet)
+
+# 44 SW: The Wash House
+We walk in the publish wash house.
+$havetag(wet), go to $jumplead(Z-1)
+We dry ourselves off and feel much better.
+{endjump}
+* Otherwise, go to $jumplead(Z-2)
+We decide to wash our socks in the nearest basin.
+
+
+# 66 SE: The Pigs Knuckles Inn
+The bar looks a bit rough:
+* If you would like to enter, go to $lead(Z-3)
+
+# Z-3: The Dangerous Bar
+It's not so bad in the bar after all, we order sasparilla.
+
+# 7 WC: A Grand View
+We look around at London in all her glory.
+
+# 55 NE: The Market Stall
+We eat some fish and chips from a stall on the side of the road.
+Wiggins says they are *delicious*.
+
+# Intro (section=Briefings)
+This is the start of your case!
+
+# Finale (section=End)
+This is a finale section where you get some questions.
