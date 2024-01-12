@@ -1,11 +1,9 @@
 # cover
-## **TEST CASE**
+## TEST CASE
 by Jesse Reichler
 v1.3 - January 1, 2023
 
 // A test case to demonstrate the hl parser
-
-
 
 # options
 {
@@ -43,8 +41,10 @@ We decide to wash our socks in the nearest basin.
 The bar looks a bit rough:
 * If you would like to enter, go to $lead(Z-3)
 
+
 # Z-3: The Dangerous Bar
 It's not so bad in the bar after all, we order sasparilla.
+
 
 # 7 WC: A Grand View
 We look around at London in all her glory.

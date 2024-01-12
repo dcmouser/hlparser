@@ -23,7 +23,7 @@ from hlparser import HlParser
 # ---------------------------------------------------------------------------
 # expand neighborhoods by a certain amount which helps enclose surrounding streets
 # though note that this makes neighborhoods partially overlap
-optionOverrides = {'basedir': os.path.dirname(os.path.abspath(__file__)), 'savedir': '$workingdir'}
+optionOverrides = {'basedir': os.path.dirname(os.path.abspath(__file__)), 'savedir': '$workingdir/output'}
 # ---------------------------------------------------------------------------
 
 

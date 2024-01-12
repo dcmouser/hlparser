@@ -1,0 +1,539 @@
+# cover
+## **DROP DEAD**
+### by Marthinus Conradie and Jesse Reichler
+#### v1.5 - January 11, 2023
+###### ($get(buildInfo))
+
+
+/*
+SOME INTERNAL COMMENTS/IDEAS:
+
+Dante entry is long, not best place for radio addition -- I moved it to day 2.  This means i’d like to make it ok if they dont figure out the Jeweson location until day 2.
+I want to keep the Hall of Records.. But I may put a nudge in about it somewhere.  OOH i have an idea.. I’ll have someone make an offhand comment it.  Effie’s boss; give it a look see what you think.
+
+Condition Tag Notes:
+(duckling): when players get info from the old woman across the street.
+(samtaxi): when players find sam babins route to GV police precinct and gashouse bar; now they can visit precinct and learn about 16 year old alice ayala.
+(denicetag): When players find out denice ayala is friends with them, and also get her bank statement.
+*/
+
+# options
+{
+	"info": {
+		"chapterName": "dropDead",
+		"chapterTitle": "Drop Dead"
+	},
+	"sections": {
+		"D1": {"label": "Day One", "sort": "010", "leadsort": "index"},
+		"D2": {"label": "Day Two", "sort": "020", "leadsort": "index"},
+		"Main": {"label": "Main Leads", "sort": "050", "leadsort": "alpha"},
+		"Briefings": {"label": "Briefings", "sort": "070", "leadsort": "index", "cssStyle": "onecolumn"},
+		"End": {"label": "Conclusion", "sort": "100", "leadsort": "index", "cssStyle": "onecolumn"}
+	},
+	"cssdocstyle": "twocolumn"
+}
+
+
+
+
+
+
+# Introduction (section=D1)
+**Thursday Night, March 10, 1938**
+“Let me guess what you’re thinking,” I say to Sergeant Harry Stone. “You’re wondering what goofball in the mayor’s office came up with this stupid idea.” 
+It’s 6pm on Friday evening and every cop from the 6th precinct has been invited to the Gallery of Living Art, as a *gift* from the mayor. Most of my colleagues are hanging around the lobby enjoying free coffee and doughnuts. Only Harry and I are wandering around.  
+He’s only recently been assigned to me, and we’re getting a feel for each other. Physically, we are like night and day. I’m built like a boxer, stocky and strong. Harry is a beanpole, almost seven feet tall, but spare in the muscle department. I’d wager good money he can run ten miles and still play a tuba. 
+Suddenly, I realise I’m walking alone. 
+“Sergeant?” I look behind me.
+“Um… Lieutenant… Come and look at this, will ya?”
+I turn, walk over to him, and wince.
+Harry is staring at a painting as if seeing a ghost. “Don’t we know him, Lieutenant? We do! It’s that old timer who owned the shoe store next to the precinct! The one who got beaten to death last year. You found the body, remember?” He falls silent for a second, and then snarls, “What nerve! He was a good man! Now some artist makes a buck off his death!”  
+Before I can formulate a reply someone whispers behind me, and I nearly jump out of my skin. “Lieutenant Malcolm Lockwood?”
+It’s Archie Babin, a beat cop I know from my early days on the force. A friend. Well, sort of. He’s wearing a determined expression, which is quite scary on a man built like a bear.
+“Malcolm,” he rumbles, “You owe me a favour, and I’m calling it in.” 
+Right to the point. He’s not messing around.
+“What do you need, Archie?” 
+“It’s my little brother. He’s mixed up in something bad, and he won’t talk to me.”
+“What do you expect me to do about it?” 
+“Talk some sense into him, Malcolm. Find out what‘s going on.”
+I want to tell Archie that I don’t run a kindergarten, but instead I glance at Harry to see what he thinks, and he’s already got his notepad out. Good kid. 
+“Alright then, Archie. What’s his name and where can we find him?”
+“Sam. Sam Babin. He’s a gumshoe up in Bloomingdale. He’s a Jazz nut. Spends his free time in a joint called the Cosy… Cat or Cozy Cove… something like that. It’s up on Broadway.”
+I give Archie a pat on the back. “It’ll be okay, Archie.  We’ve got nothing to do -- we’ll head over there right now.”
+Anything to get me out of here. As we leave, I say a quick prayer of thanks that Harry overlooked the small ML scrawled in the corner of the painting of the old man. 
+
+
+
+
+
+# 3-2470: Cosy Cadence
+We are about to enter the Cosy Cadence jazz club when Harry leans closer and whispers, “I’ll bet a week’s wages there’s a stage inside with some siren swaying her lovely hips around the microphone.” 
+I offer no opinion on sirens or other mythological creatures.
+He’s not wrong. Archie’s brother – Sam Babin – is perched on a stool close to the stage, ogling the singer in her red dress.
+If the angels who crafted Archie’s body took inspiration from a bear, the ones responsible for his brother took their cue from a ferret. He’s handsome, I’ll admit, in a sly sort of way. Moreover, he’s smart enough to notice us eyeing him, but we flash our badges and step close. 
+“My brother sent you, didn’t he?” Sam Babin sighs. “You hoping to set me on the straight and narrow?” His eyes return to the singer.  
+“Let’s talk outside,” I say. “Fewer distractions.” 
+Sam reluctantly walks outside with us, mumbling something about an appointment. “What do you fellas want?”
+“You on a case?” I ask.
+“What’s it to you, mister?”
+Harry chips in, “First of all, you call him Lieutenant Lockwood, and you call me Sergeant Stone, got it? And second of all, we’re here as a favor to your brother, pal. He says you’re in trouble.” I can sense a little anger in his voice -- I guess he doesn’t like being disrespected.
+Sam rolls his eyes. “Look fellas, go tell my big brother I don’t need him to play guardian angel. He can mind his own business -- and so can you. I’ve got a cab to catch.”
+Harry flexes his knuckles and takes a step towards Sam, but I put an arm across his chest. “Now, now, we’re all friends here”, I say, and to Harry, I whisper, “Remember why we’re here.” 
+Sam smiles nervously then turns and hurries off down West 94th Street.
+I turn towards my car with Harry in tow. He starts to say something when I hear a car backfire behind us. No. Not a backfire! I turn and see Sam Babin’s body crumpled in a pool of light from the streetlamp. There’s no one standing around him. No one on the opposite side of the street. All the traffic lights are green, and cars are speeding by.
+I race towards Sam, find his wrist and feel for a pulse. Nothing. Blood stains his white shirt.
+“Shot,” Harry breathes. He looks around for witnesses. Good kid. But there’s no one.
+I quickly rummage through Sam’s coat, and the inside pocket yields a note.
+$retrieve(“document 1 from the large evidence envelope”, “handwritten note with words: meet me at 8 in Dane’s; Damn Effy and Claire will be there too -- as always”)
+Half an hour later, we’ve established that no one in the club saw or heard anything.
+“No shell casing anywhere,” Harry observes.
+“So, either a revolver or a pistol fired from inside a car; most likely a revolver.” I pass the note to Harry. “Our destination.”
+“What about jurisdiction, sir? This isn’t our beat, and anyway, won’t they want us interviewed?”
+I spot a payphone. “No. This case is ours. I’m calling in a favour. We’re going to Dante’s. Go find a patrolman who can secure the scene.”
+
+
+# 8-2751: Dante’s
+Dante’s is a different beast from the Cosy Cadence. No siren on the stage here. No stage at all. Just an open space next to the bar where a single pianist plies his trade.
+I sidle up to the barkeep, who slips a greasy grin my way. “Lieutenant! Good to you see ya. Whatcha want to drink? Still no alcohol?”
+He’s a wiry man with a walrus moustache under bushy eyebrows and a bald head.
+“Nothing tonight, Malebranche. I’m on a case. No rest for us. I’m looking for two dames that go by Effy and Claire. You know them?”
+He nods towards a small round table in a dim back corner. “Regulars,” he whispers. “Good tippers. No trouble. Just decent Janes.”
+One of the women sports blond, wavy hair that tumbles to her shoulders – an unusual length for this day and age. The hair goes with a face that’s appealing but not exactly suited for magazine covers. Her chin is a little weak, her nose slightly crooked, but she carries herself as if the flaws enhance her appeal. Good for her. For some reason, I mark her as Effy immediately. Her friend’s brown hair is short, curling around her jawline as if hugging it for comfort – like that actress whose name I always forget. 
+Harry catches my attention and whispers, “Sir, you want me to separate them?”
+I smile. “Good thinking, Sergeant. Get their stories independent of each other? Not this time. Let’s see what they say together. Watch ‘em closely. Remember, we know something they don’t.”
+The two women have noticed us eyeing them and Effy quirks a golden eyebrow, so I walk over and introduce myself with my badge. Harry and I take a seat, but the small table forces us into close quarters with them.
+“Effy Uvarova – Miss Effy Uvarova,” the blonde announces. Her smirk never falters, and I wonder if it’s a mask. Her friend starts chewing her own bottom lip.
+“Claartje Blaak,” the brunette says, pronouncing her first name in a way that makes no sense to my ears, “but you can call me Claire.”  Thank god.
+Harry reacts to their names. His foot kicks my ankle clumsily, and I see Miss Uvarova flick her sharp brown eyes towards him. His poker face needs work, especially around her. She’s no fool.
+“The two of you are waiting for Sam Babin.” I make it a statement, not a question.
+Miss Blaak’s eyes widen, but Uvarova speaks up: “We are.” She offers me a cigarette, and I decline while she lights up.
+“Why?” I ask.
+Uvarova looks at Blaak and allows her to speak. I get the feeling that allow is just the right word for their relationship.
+“Inspiration,” Blaak says. “I’m a novelist – a detective novelist. I’m doing a character study and I need inspiration, so I need to talk to real people with real stories. Sam Babin is a Private Investigator, and he’s full of colourful stories.”
+Harry chips in, “Inspiration? That’s all?”
+Miss Blaak meets his eyes with a cold smile that’s completely at odds with the nervousness I spotted earlier. “He’ll be here soon. You can ask him yourself.”
+“What about you, Miss Uvarova ?” I ask.
+“Please call me Effy, Lieutenant. My interests align with my friend’s. Only, instead of writing novels, I write for The Daily Mirror.”
+“Reporter?” I ask.
+“Gossip columnist,” Harry interjects. “Muck-raker!”
+Miss Uvarova keeps her eyes on me, reacting to the insult like a statue does to pigeons. “Yes, Lieutenant, and I often shadow my novelist friend here. Real stories are my stock-in-trade too.”    
+I catch Harry’s eye and nod.
+He asks the vital question. “So, Sam Babin is coming here to meet the two of you?”
+“No,” Effy replies. “There’s another regular girl here. I can never remember her name, and I don’t see her around just now. Guess she likes stories too.” She holds my eyes for a full minute. I don’t look away, but I’m itching to.
+“Can you remember what this woman looks like?” I ask, still holding her gaze.
+“Beautiful,” she answers. “In an… unusual way. Blonde hair, like mine, but short and curly, like Claire’s.”
+I notice Miss Blaak’s eyes widen before she recomposes her features into a stolid smile.
+I rise and put my fedora back on my head. “Thank you for your cooperation. Please do not leave town. We may want to talk with you again.”
+“Speaking for myself,” Effy replies. “I look forward to a second interview. The innocent have nothing to fear, right, Lieutenant?”
+“Sir,” Harry hisses while we walk towards the door. “I know those two!”
+“I know, Sergeant, and they know you know.”
+He blushes. “Sorry, sir. Thing is, those two are always writing about how dumb and corrupt the police are. Between them, they’ve made some of the boys at the station look pretty bad.  I’d be careful what you say to either of them.”
+“I’ll take it under advisement, Sergeant.” 
+“They didn’t know Sam had been shot”, he says.
+“You sure about that?”, I ask, raising an eyebrow.  “Something’s not right about these two, and I’d like to know more about who we’re dealing with. Coroner’s report won’t be available until tomorrow. Until then, we’ve still got work to do.”
+
+# 4-2174: Downing Street Apartment 4a
+Apartment 4a seems to have escaped the water damage to 4b and 4c.  Harry knocks loudly on the door, but there’s no answer.  For a moment I think I hear some movement inside, but then I’m not sure.  I look over to Harry -- he doesn’t seem to have heard anything.
+
+# 7-4184: Downing Street Apartment 4b
+When we get to apartment 4b, we notice the door is cracked open, and the air coming from inside it smells somewhat mouldy.  The doormat looks damp and has been leaned vertically against the door frame.  A sign on the door says “Maintenance - Do Not Enter”.  I knock anyway but there’s no answer.
+$afterday(1), $inline()
+“She’s not home.” Danny the doorman is standing behind us. After a second, I realise that my mouth is hanging open. The big man can move like a ghost, and I start to wonder how he would handle himself in a fight.
+“Did you see where she went, Danny?” Harry asks, his tone gentle.
+Danny nods. “A man came round to pick her up, about ten minutes ago. I don’t know his name, but he looked rich – tailored suit and polished shoes. Handsome type – chin as big as a clenched fist. Blonde hair. Blue eyes. She went with him willingly. She got into a green Chrysler Phaeton.”
+“Got the plates?” I ask.
+“Yes, officer.” He sounds offended that I would even suggest otherwise. “9X 6767”.
+“Good man, Danny.”
+$gaintag(plates)
+
+# 1-1267: Downing Street Apartment 4c 
+$onday(1), $inline()
+The carpet is wet in front of apartment 4c.  My mind starts running through images of people drowned in overflowing bathtubs, but then I notice a patched but leaking water pipe running up the wall between 4b and 4c.  A sign on 4c says “Maintenance - Do Not Enter”.
+Harry steps in front of the door, his shoes sinking into the wet carpet, and knocks.  No answer.
+$otherwise(), $golead(EffyReinterview)
+
+# 1-3018: Downing Street Apartments – doorman
+$havetag(ducklings) $inline()
+“Hey Danny, long time no see,” Harry greets the doorman at the Downing Street Apartments.
+“Everything okay?” Danny replies.
+“Depends on what you can tell us about the ladies up on the 4th floor.  We hear they’re pretty close.”
+“They’re friends, always hanging out together, always going to Dante’s. Miss Blaak in 4b, Miss Uvarova in 4a, and Miss Denice Ayala in 4c.”
+“I don’t suppose you could let us into the apartments?” I ask. 
+“Without a warrant? No,” Danny replies. 
+“Okay, Danny,” I say genuinely, “Thank you for your cooperation.”
+On the way out of the building Harry gives me a subtle elbow and motions over at a pile of undelivered mail.  A quick rifle through it turns up a few interesting letters.
+$retrieve(“document 2 from the large evidence envelope”, “Misc. documents including bank statement for Denice from Hanover Bank”)
+$gaintag(denicetag)
+$otherwise(), $inline()
+It turns out that Harry knows the doorman at the Downing Street Apartments.
+“Hiya Danny! How’s life treating you?” Harry booms, while grabbing Danny’s hand and pumping wildly. The Sergeant’s smile is warm enough to heat coffee. “Let me introduce my new lieutenant – Malcolm Lockwood.”  Then he turns to me: “Lieutenant, Danny here’s kind of like a knight in shining armour. He takes care of his flock so the wolves don’t get ‘em.” I almost want to explain to Harry the concept of a mixed metaphor, but but we don’t have the time.tempus fugit.
+Danny looks like he might have been a dapper chap once – before his love affair with German beer and Italian pasta.
+I ask Danny about maintenance work on the 4th floor.
+“Yes, we had a big water pipe burst.  Lots of damage.  I’m fixing it.”
+“And the residents?” I ask.
+“They move across the street until the water is gone.”  He gestures across Downing street.
+“Thanks for your cooperation.” 
+# BoardingHouseAcrossDowning: 13 Downing Street Boarding House (section=Main.Errata)
+As we head up the stoop to the 13 Downing Street Boarding House, an old woman in the apartment next door leans out her balcony and yells to us: “Those harlots are up to no good! I told ‘em they’re gonna to get what’s coming to them! Lock them up and throw away the key, I say!”
+Harry gives her a wave as we head in the door.  “They’re harlots, mark my word!” she says.
+“We’re looking for some new guests of yours from across the way. ”, I say to the middle-aged woman sitting at the desk in the lobby of the boarding house.
+She does not seem impressed by our badges.  “Yeah we got two girls staying here while they work on the apartments next door.  But they’re not in.  Haven’t been in all day.”
+“A blonde and a brunette” I ask.
+“Yep.  Effie and Claire.”
+“They been any trouble?” Harry asks.
+“None at all,” says the woman.
+“Mind if we have a look in their rooms?” I ask.
+“I sure do.” says the woman.  There’s an awkward moment as we stare each other down before I give up.
+“Thank you for your cooperation,” I say as we leave.
+
+# 5-4170: 15 Downing Street
+$onday(1), $inline()
+Mrs Alide Moretti is a widow in her 60s, but that doesn’t stop her from following fashion and keeping her grey hair in the latest style.
+“Well now, aren’t you a handsome Joe,” she says, winking at Harry. “What can you do for me?”
+“Um...” 
+“Silly me – I suppose the question is, what can I do for you? Did you catch those Harlots?”
+I jump in to save Harry, “Well, that’s what we want to ask you about.” 
+“Those harlots,” she says. “Those sly little ducklings.”
+“Ma’am?”
+“The two blonds and the brunette. I’ve heard their names before, but I can never keep them straight. I only remember men’s names. They’re always partying across the way on the 4th floor, I can see them from here,” she says, pointing out her window.
+“Three girls, not two? You’re sure about that?” Harry asks.
+“Three *HARLOTS*” she emphasises. Harry and I exchange a glance.
+“And why do you call them harlots?” I ask. 
+“They’re always meeting with some slick looking fella outside, showing him nasty photos, acting sneaky.  Always giving him slips of paper.  Up to no good, they are.  Nasty little ducklings.”  We describe Sam Babin to her and she seems to confirm he’s the guy in question.
+“Anything else you’ve noticed?” I ask.
+“Let me think… Well one interesting thing happened. Usually, the ducklings walk over to Dante’s and spend the whole evening there. This time… oh, it was around… 7.45, 7.50-ish… A car roared down the street. It was a beautiful green Chrysler Phaeton. A man dashed out of it, a different man from the one with the photos you understand, but too fast for me to get a good look at him. He ran inside and came out with one of the ducklings in tow.”
+“Which one?” I ask.
+“Oh… um… one of the blondies, I think. It all happened so fast, and my eyesight is not what it used to be. That’s why I normally rely on these.” She points at a pair of army surplus binoculars.
+“How did you manage to get hold of those?” Harry asks.
+“Oh, an old suitor – one of many, I don’t mind telling you – brought them back from the Great War. Now, the point is, I didn’t have time to get them when the car zipped by. Hmmm… There was something else. Something that didn’t happen today. Was it yesterday? I don’t quite remember. Well, Sergeant Handsome Harry, if you come by tomorrow for lunch I’ll make you a nice bowl of Chicken soup and we can talk more about it.”
+She winks, and to my surprise, Harry takes her left hand, plants a very delicate kiss on her knuckles and says, “It would be my pleasure.”
+I give him a sideways glance on our way down the stairs. “She reminds me of my mother, sir.”
+$gaintag(ducklings)
+$otherwise(), $inline()
+Mrs Moretti has got chicken soup on the stove when we arrive, and we all sit down for a nice bowl and talk about the weather.  The weather and harlots. Mostly harlots.
+# 1-3397: Glynn’s PI
+“Glynn’s,” Harry snorts with derision. “What kind of name is that for a Private Investigator? I mean, Glynn’s could be anything. A car dealership. A butcher.” 
+“What name would you pick?”
+“Something with panache like… Ragged Angel.” He spreads his hands out as he imagines it in front of him.
+I note the dreamy tone. “Well, remember me when you set up shop.”
+We head into Glynn’s office building, and through the elegant Georgian lobby. Glynn himself is lean, fit and regal. He looks more like an English lord than a Yank PI.
+Sure enough, he speaks with an Oxford accent. “I was wondering when the local constabulary would grace my abode”.
+“We’re sorry for your loss” I say.  Something about my voice irks him.
+“You’re not from the Bloomingdale precinct. What’s your stake in Sam’s death?”
+“My sergeant and I were there when Sam Babin was killed. That makes it my business now.”
+He rubs his chin and Harry pops his knuckles. “What was Sam working on recently?” I ask.
+“I really can’t say.”
+“You can’t say, or you won’t say?” I ask.
+Mr. Glynn pulls a gold zippo lighter from his pocket and starts flipping the lid open and closed while picking his words... Click-clack… Click-clack.
+“Sam and I don’t share cases - just an office.  But he was my partner and he didn’t deserve to go out like that. I don’t know what Sam was working on.”
+“Well what would $40 a week buy?” 
+He pauses. Click-clack. “Well, $40 is what we normally charge for a missing person job.  Missing persons or death threats.”
+“Death threats?” Harry asks.
+“You know, you tick someone off; you receive an anonymous death threat.  For $40 we figure out who’s threatening you.”
+“But stopping the threats, that’s extra, yeah?” ask Harry.  
+A wide grin forms on Glynn’s face.
+I nod and point my fedora at the expensive bottle of whiskey on his desk. “We’ll leave you to your grief.”
+# 8-4136: Dunn & Jewesson
+We share the news with Mr. Jewesson regarding Sam Babin.
+“In this particular case, I shan’t mind speaking ill of the dead,” he responds in a distinctly Australian accent. “Sammy was a colleague of mine for a stint.”
+“Did he leave of his own volition?” I ask, sensing an opening.
+Mr Jewesson spreads his hands. “Well… Yes and no. We have a code, you see. In the main, PIs can be trusted to investigate and avoid the nasty temptation of using what we discover to blackmail our clients.”
+There’s a long pause before he continues.
+“To be sure, there was never any definitive **proof** that Sam actually broke the code, but let’s just say I couldn’t keep him on.”
+# 1-3406: Otto’s Shrunken Head
+ * If it’s day one, $inline()
+As we drive into the Gashouse District I can literally feel the density of the air thicken -- some mixture of chemical fumes and ash from the local factories.  It’s not pleasant.
+“Through me you pass into the city of woe. All hope abandon ye who enter here,” I mutter.
+“What’s that, sir?” Harry asks.
+“Just something from Dante,” I mumble.
+We park close to Otto’s Shrunken Head, and no sooner has Harry pulled the handbrake than an old man leans down by his window, “Coppers. I can smell you’re coppers – and so can everyone else here. You don’t want to hang around here, for the sake of your health.” His breath is a health hazard.
+ “We’re not here to bother anyone, mister. We’re just looking for a description of the gals who work here” I say, pointing to the Shrunken Head.
+“What’s it to you?” the old man growls, treating me to another whiff of his breath.
+“We’re just looking for a friend,” I say.  “Tell you what, you ask around a little bit, and we’ll come back tomorrow and make it worth your while. That alright with you?”
+“Ah.. Maybe it is. I’ll be here.”
+$otherwise(), $inline()
+ATTN: DAY 2 DRUNK INTERACTION GOES HERE.
+ 
+ 
+
+# EffyReinterview: Re-interviewing Effy (autoid=true)
+$havetag(denicetag) $inline()
+Harry is in a foul mood when we head up to Efimiya Uvarova’s apartment. I don’t think he likes being lied to by a dame. Maybe he has issues. 
+She meets us like a diplomat expecting an international incident.
+“Gentlemen, come on in.” For a second, she bars the way into her sitting room as if challenging me to shoulder past, but I wait. She smiles even wider before taking a short step back, and I smell her perfume on the way in.  
+Uvarova’s apartment is modest, but neat and ordered. I figure it reflects the precise, ordered nature of her mind. She’s got coffee ready; seems like she was expecting us.  Or someone else.  She passes a cup to Harry and one to me. The gesture doesn’t melt the ice in Harry’s eyes. There’s a tiny kitchenette in an alcove off the sitting room, just like my apartment – and like mine, her heating doesn’t seem to work so well.
+Harry takes the lead, like we’d planned. “You lied to us at Dante’s. You know Denice Ayala. She walked into Dante’s with you and Claire, but when we showed up, she was gone. Where did she go?” 
+“I hear,” she responds, “that Mr Babin was shot. It was on the radio. Pity…”
+“Stop,” Harry says in a low voice. “Tell us the truth before something bad happens to someone else. Why were you and Denice meeting with Sam? Where is Denice now?”
+“If I didn’t know any better, I would call that a bad case of foreshadowing. You know what that is?”
+“Yeah, it means you know something.”
+Uvarova laughs and it’s… well it’s not an unpleasant sound.
+Harry grinds his teeth then opens his mouth, but she heads him off and looks at me. “Lt. Lockwood, I will speak with you alone.  Your sergeant can wait in the lobby.”  
+It’s Harry’s turn to laugh his booming laugh, but I say nothing and lock eyes with him until he gets it. His face falls, but then he frowns and… I can’t figure out what he’s thinking, but he looks at Uvarova and back at me. An honest smile twists his lips, and he exits the room.
+Uvarova seats herself on a plush armchair. She’s wearing a red dressing gown that covers her from neck to ankle. She offers me a cigarette, which I decline.
+“You look like a gin and tonic man,” she says.
+“I don’t drink”
+She frowns. “Pity. Either way, I’m willing to trade information, Lieutenant.”
+“Name your price, Miss Uvarova.”
+She holds up three fingers. “First – call – me – Effy. Second, from now on, I want to call you by your first name. Third, I want you to tell me something about yourself. Something… personal.” She draws the word out as if it tasted sweet in her mouth.
+“You planning to write about me?”
+She smirks, “Not this time. I’ll give you one free pass.”  
+“Alright, Effy.” Talking to her feels good, though I can’t say why. “Call me Malcolm. I paint in my free time - portraits mostly. I’m not great, but better than some.”
+“What kinds of people do you paint?”
+“How about you share some information and I'll tell you next time?” 
+She purses her lips and lifts her hands, palms-up, imitating scales, bobbing them up and down, up and down. “Alright, but I’ll keep you to that promise.” She puts out her cigarette in an ashtray.   “Call Martinez-Plough’s Gallery. Speak to Violet Tomlin. She’s one of several secretaries for the owner of the gallery. Tell her you’re a detective. She thinks you’re the most romantic creatures alive. Ask her about Denice. Obviously, don’t call right now. Wait until tomorrow. It’s laughably late. Speaking of which, I need my beauty sleep. Girl’s gotta work tomorrow.”
+Suddenly feeling as out of place as a clown at a hair salon, I make my departure.
+Harry is waiting for me in the lobby downstairs. “Well, sir?”
+“Well,” I say, putting my hat back on my head, “we got a lead.”
+$otherwise(), $inline()
+We spend a dizzying 30 minutes flirting with Effie Uvarova, but it’s impossible to get anything useful out of her.
+
+# 2-7393: Morgan Guaranty Trust Company
+$havetag(denicetag) $inline()
+A call to the Morgan Guaranty Trust confirms that Denice Ayala is not a client; neither is Sam Babin or anyone else involved in the case.
+$markovertime()
+$otherwise(), $inline()
+We find nothing of interest at the bank.
+ 
+# 5-1658: Hanover Bank
+$havetag(denicetag), $inline()
+I burn a few more favors to get the manager of Hanover to meet me in front of their building, despite the late hour. He’s sour about it, but he scurries inside to fetch their files on Denice Ayala.
+Not much activity, he says, in a high nasal voice.  “Except that for the last three weeks she’s written a $40 check to Glynn’s Private Investigating Firm”
+$otherwise(), $inline()
+We find nothing of interest at the bank
+# 8-2014: Mount Morris Bank
+“What are you taking notes on, Sergeant?”
+“Just writing down tips on how to beg, wheedle, cajole, threaten and coax bank managers this time of night, sir. You got a knack!”
+I make no reply while we wait for a clerk from Mount Morris Bank to bring their files on Sam Babin.
+“Mr Bain… No, Babin… Yes, Mr Babin had a less than stellar reputation with us.”
+“What does that mean?” I ask, “He was in debt?”
+“Like a pig in muck – if you’ll pardon my farmyard metaphor. Does that further your inquiries?”
+“What else can you tell us?”
+The clerk frowns.  “If you ask me a specific question I shall try to answer it as best I can.”
+Harry snorts.
+“I’m curious about Mr Babin’s demeanour,” I reply. “Did he show any sign that his prospects had improved recently?” 
+My new friend smiles. “As it happens, officer, I can share that Mr Babin recently consulted a colleague of mine who, in turn, shared during our lunch break that Mr Babin seemed intoxicated and was quite loquacious about an upturn in his financial prospects. Apparently the term golden goose was used.”
+“Thank you for your cooperation,” I say.
+Harry snorts again as we depart. “What exactly have we learned, sir?”
+“Much.”
+“Such as?”
+“Apply yourself, Sergeant.” 
+
+
+
+
+# 4-3488: Aliyev’s Art Gallery
+By the time I’m given the personal home number of the head curator of Aliyev’s Art Gallery, I’ve probably earned some new enemies. However, Miss Aliyev’s tone softens when I ask after Denice Ayala.
+“Brilliant mind, that woman,” she exclaims. “Meticulous. Ordered. Determined. You’d never know she grew up so poor. Then again, people with that sort of background often have something to prove, and Denice has certainly proved herself. I met her in some hotel, I forgot which one, but she was working as a receptionist, and I took her under my wing. Saw her potential instantly, and boy was I vindicated! When she was ready, I landed her that job as secretary at Martinez-Plough's Gallery. She is a real treasure – and I hear she’s doing quite well for herself financially. Standing on her own two feet!! Hmmm… Are you calling to offer her a better position elsewhere?”
+“Thank you for your cooperation” I say.
+
+# 4-9259: Violet Tomlin phone number
+$onday(1), $inline()
+We call Violet Tomlin’s number, but no one’s picking up the horn.
+“It’s late,” I observe. “Better try her tomorrow, like Miss Uvarova suggested.”
+$markovertime()
+$otherwise(), $inline()
+Lead for day two Violet Tomlin goes here
+// ATTN: UNFINISHED
+
+
+# 5-2757: Rainbow Taxi Service
+Several of the boys at the Rainbow Taxi Service are old pals of Harry’s.
+“This man right here,” he announces, pointing at me, “is my new boss. Meet Lt. Lockwood. Now you bunch answer his questions and make me look good, alright?”
+Harry’s friends offer me cigarettes and beer, but I decline as politely as possible, and run through our persons of interest. No one recognises any of them.
+“Except!” one wiry man, barely old enough to drink the beer he’s holding, pipes up. “I picked up your Miss Uvarova from her apartment building and took her to Martinez-Plough's Gallery. That must have been… around 7pm yesterday.”
+“Thank you for your cooperation.”
+“You don’t smoke, sir?” Harry asks as we leave.
+“No Sergeant, and before you ask, I don’t drink alcohol either.”
+The air between us drops a few degrees.
+
+
+# 6-4869: Bloomingdale Taxicabs
+Fortunately, cab companies are open all hours of the night.  We step into the Bloomingdale Taxicabs company to see if anyone recognizes Sam Babin.
+I introduce myself to the shift manager, flicking my badge out. “Detective Lt. Lockwood. I’m looking for information on a Sam Babin. He may be a regular client of yours.”
+Somewhere behind me, Harry is already making new friends. Guess he’s got a knack.
+The shift manager recognises my description of Sam Babin.
+“We do well enough by him. He’s a gumshoe I hear.. Why are you looking for him?”
+I don’t answer.
+The manager clears his throat and carries on, “We keep pretty extensive records. How far back do you want me to go?”
+“Just the last month should be fine.”
+He returns from the back room with a large black book.  “Looks like he travels from the Dufton boarding houses on Broadway to the Downing Street Apartments about once a week for the last month. Also, he’s been taking a cab regularly down to the Gashouse District – just driving all over the place. Then a week ago, he starts frequenting a bar down there on 1st Avenue. Looks like he’s paying the cabbie to wait for him outside – can’t say I blame him; you don’t wanna get stranded there, am I right? Uh. Anyway, he pays the cabbie to wait, and then gets taken straight to the Greenwich Police Station for a brief stop, not sure what that’s about, and then back up to Bloomingdale. Does that help?”
+“Thank you for your cooperation.” 
+$gaintag(samtaxi)
+# 7-5485: Dufton and Brother Boarding Houses
+We explain to the Dufton brothers that Sam Babin’s been shot, and that we need to access to his room, but it’s no good.  Maybe someone in the Dufton family is a lawyer. They won’t let us in without a warrant. I try a different tactic.
+“How long has Mr. Babin been staying here?” 
+“About two months,” answers the brother closest to me.
+“And what do you know about him?” I ask, looking for a productive line of questioning. 
+“I know he was fired from his last job” says the Dufort brother in the back room.  “We were drinking and he said something about a cheap Jew boss who falsely accused him of something and fired him on the spot.”
+“Oh yeah? And did he say where this was?”
+“I don’t remember the name… Given his line of business I assume it was another Private Investigator agency, but I have no idea which one.”
+
+
+# 7-7336: Greenwich Village Police Precinct 
+$havetag(samtaxi) then $inline()
+We walk around the precinct building until we find the side entrance down to the basement. The holding cells down here are, ironically, our cleanest rooms. By contrast, every space upstairs is cluttered by desks, cabinets, battered chairs and bodies that reek of sweat and cheap cigarettes. Down here, I smell the sharp odour of disinfectant and I like it. It reassures me that the cleaner cares for her profession, cares that she’s making a difference by keeping this corner of the world clean. Brings a smile to my face.
+On nights like this one – those rare nights when the holding cells are as empty as a church on Mondays – I know that Lt. Eric Marsh, who runs undercover operations for the precinct, likes to sit down here to keep company with his thoughts. I’m not wrong.
+“Give us a minute,” I whisper to Harry.
+Eric is built along the same lines as Harry, but he packs more muscle. He’s also got a brain that’s older, stronger and matured – like whiskey but less toxic. In short, he’s a brainy giant.
+I take a seat beside him, and we sit in silence for a minute.
+“Why are you here, Malcolm?”
+“I’m trying to figure out why a Private Investigator would be making regular stops here at the precinct.”
+“The one who got his ticket punched earlier tonight?”
+“That’s the one. I’ve got him at a bar in the Gashouse district and then coming here.  Why would he do that, Eric?”
+Eric sighs, “Why does anyone do what they do?”
+“Eric, do we have someone working undercover in the Shrunken Head bar?”
+Eric says nothing.
+“I’m wondering,” I carry on, “whether Sam Babin might not have recognised an undercover cop or informant hanging around Otto’s, and followed him back here. His ilk are good at remembering faces.”
+After five long minutes, Eric looks at me, “Malcolm, I can’t be talking to you about this.”
+“I got a dead PI that’s mixed up in it, Eric. I need to know.” Another five minutes.
+“Alice Ayala.” he says.  “She’s a confidential informant working a case on a mobster in the Gashouse district. That’s all I can tell you. She’s just a kid. I don’t like it, but it is what it is.”
+“I owe you one, Eric.” I say as I head up the stairs.
+$otherwise(), $inline()
+We stop into the precinct for a quick cup of coffee then head back out.
+$markovertime()
+
+
+
+
+# 1-8786: Department of Motor Vehicles
+$onday(1), $inline()
+It’s after hours and the building is closed.
+$otherwise(), $havetag(plates), $inline()
+We ask them to look up the registered owner of the plates “9X 6767”.. They come back to a “XXXXXX XXXXXXX”
+// ATTN; needs filing in.
+$otherwise(), $inline()
+We realise we don’t have anything to ask about and leave.
+$markovertime()
+
+# 3-6861: Hall of Records
+$onday(1), $inline()
+The Hall of Records is closed for the day.
+$otherwise(), $havetag(denicetag) $inline()
+The Hall of Records is so quiet I swear I can hear dust motes chafing against each other. The silence is not unwelcome and I can’t help but smile.  From here we can look up birth certificates for anyone in the city.
+“Here we are,” Harry announces. “Looks like Denice Ayala has a younger sister named Alice, about sixteen years old now.”
+“Does it have an address for her parents?” I ask.
+“Nothing, sir. Both Ayala daughters are listed as orphans.”
+“There’s something else, sir. Looks like Efimiya Uvarova and Claartje Blaak are orphans too. Huh. They’re all from the same orphanage in the Gashouse district.”
+“That’s a popular orphanage.  Got an address?”
+“Well, yes and no.  It’s got an address here but it was on the east side and they tore down that whole area a couple years ago to put up the waterfront warehouses, so it’s long gone.”
+“Hmm.. That’s unfortunate.  Another dead end.”
+$otherwise(), $inline()
+For some reason there’s a line at the Hall of Records birth certificate department -- some college kids doing genealogy research.  Harry and I decide we don’t have a good enough reason to waste our day here.
+
+
+# 2-9326: Daily Mirror
+“Bedlam!” Harry exclaims from his chair next to mine. “Reporters are crazier than cops!”
+I turn and follow his gaze. He’s peering out the glass windows of the office belonging to Thomas Delaney – Editor-in-Chief of The Daily Mirror. From this vantage point, we look down on an anthill of frenetic activity in the news room below. It resembles the police station: crammed with desks and bodies jostling about, smelling of sweat and cigarettes.
+“My uncle is a beekeeper,” Harry comments. “The reporters down there make a beehive look like a holiday resort.”
+“My empire!” a voice announces behind us, and Mr Delaney strides into his office. He takes a seat behind a huge desk that is, contrary to all my expectations, neatly ordered. “Never a dull moment!” Mr Delaney bellows, a cigar balancing precariously between his teeth. “What can I do for the law, today?” He leans forward, resting his narrow chin on his hands. Huge, round spectacles encircle glittering brown eyes. He makes me feel like I’m being measured for a story.
+“Effy Uvarova”, I say, “she works for you, yes?”
+Mr Delaney emits a plume of smoke, his eyes brimming with pride. “She sure does.”
+“What can you tell us about her?” I ask.
+“Nothing you couldn’t learn at the Hall of Records” he says.
+“Give me a break” says Harry.
+“Bright mind, sharp tongue, sharper vocabulary – and a nose for insalubrious chatter. What’s your interest in her?”
+“We really can’t say” replies Harry.
+“What’s she working on lately?” I ask.
+“Oh, it’s all hush hush” he says, “she won’t even tell me what it’s about. But I trust her judgement -- she always sells copy.  Hey, are you guys working the case of that PI who was assassinated up in Bloomingdale?” His eyes are flicking between our faces like fingers on a typewriter – still searching for a story.  “Care to make a comment for the press?”
+“No comment,” says Harry.
+
+# 5-6293: Alamac Hotel
+I keep wondering what the deal is with the Alamac Hotel restaurants, so while we’re uptown we stop in for a quick bite to eat.  Only one of the three restaurants are open, and it seems pretty normal to me.
+$markculture()
+$markovertime()
+
+// ATTN: this is added because it’s mentioned in the radio and I like to have all places in the radio exist and punish if they are not relevant
+
+# 3-8850: WABC Radio
+Harry asks me why we’re stopping off at the WABC radio studios on 52nd street and I tell him that I have a hunch they may have heard something about our case.  They hadn’t.
+$markovertime(2)
+// ATTN: this is added because it’s mentioned in the radio and I like to have all places in the radio exist and punish if they are not relevant
+# 3-8751: Gallery of Living Art
+We return to Washington Square Park and the Gallery of Living Art.  Strange name for a gallery, I’m still not sure what it’s supposed to mean. I remember coming to see a Picasso and Cezanne exhibit here in 1927.  Picasso was still in good health then, but Cezanne was long dead.  Someone more cynical than me might think that it was just one more example of how New York University seems to be flush with cash and is slowly taking over the neighbourhood.
+$markculture()
+# 2-4867: Sam Babin phone 
+We dial the telephone number listed for Sam Babin, but no one picks up.
+
+# 1-1432: Glynn’s phone number
+We call, but no one answers at Glynn’s home number. 
+# 5-1662: Martinez-Plough's Gallery
+No one is available at the Martinez-Plough's Gallery.
+
+# End-of-shift briefing for Day 1 (section=Briefings)
+I had to pull some slippery strings to get this case assigned to me, so I guess it’s only fair that I endure the required debriefing. 
+1. “Let’s see,” the Chief of Police asks over the cigar clamped between his yellowing teeth. “This note here mentions Dante’s. You went there, didn’t you?”
+ * If not, $headback(2).
+
+2. “That gossip columnist you met at Dante’s, did you talk to her employer?”
+ * If not, $headback().
+
+3. “You did notice the… um, coincidence of where the persons of interest from Dante’s live, right? Personally, I don’t much like coincidences. They make me suspicious.”
+ * If not, $headback().
+
+4. “And you checked in with the doorman at their apartment building, right?”
+ * If not, $headback().
+
+5. “There’s often a busy body who notices something useful about a person of interest? Have you talked to someone like that yet?”
+ * If not, $headback().
+
+6. “Did you find evidence of who hired Sam Babin, and what they were paying him?.”
+ * If not, $headback(goto=9).
+
+7. “Having trouble finding proof of who hired him, huh? Well, did you get the names of all the ladies he was meeting with?”
+ * If not, $headback().
+
+8. “If he was getting paid by check you might be able to locate some bank records; normally people bank in neighbourhood they live, but not always..”
+ * Now $headback(goto=9).
+ * $markdemerit(2) “Try the Hanover Bank in the Lower East Side.”
+
+9. “Did you track down where Sam Babin’s was staying and where he’s been going lately?”
+ * If not, $headback(goto=11).
+
+10. “He seems to like traveling by cab.. Did you follow up on recent trips?”
+ * If not, $headback().
+
+11. “Finally, and I know it’s still early in the case, but do you have any gut instincts on who the murderer of Sam Babin might be or what the motive for the shooting was? Just give me your best guess.”
+$form(multiline)
+
+
+
+// ATTN: Let’s remember that we don’t need to press them here on any leads that they could find on day 2.
+# Day 2 (section=D2)
+I’m up at 7am before the alarm goes off, and I flip on the radio.
+>*“You’re listening to WABC Radio broadcasting from our state of the art studio on 52nd street in the heart of New York City.  It’s Friday morning, March 12, 1938…  In today’s top local news Richard Witney, former president of the New York Stock Exchange, was indicted today on charges of stealing over $100,000 dollars in securities from a trust fund he was managing.  Elsewhere, Governor Lehman and Mayor La Guardia are clashing over who’s to blame for the city's recent tax collection shortfalls.  In international news, more troubles in Austria where the Nazi party continues to threaten military action…*
+>*And now a word from our sponsors… Looking for a charming place to stay during your trip to the big city? Look no further than the Alamac Hotel at 71st & Broadway.  A charming Place for Particular People -- now with 3 unusual restaurants on site for your dining pleasure… Do you suspect your wife of stepping out?  Is your business partner cooking the books? Dunn & Jewessson is on the case -- no job too large or too small for our investigators.  Find us in the Civic Center on Nassau street… Chesterfield Cigarettes -- Blow some *my* way -- the first cigarette with a patented moisture seal to keep them from drying out.”*
+Scrambled eggs, toast and coffee.  I’m thinking about my last conversations with Effie Uvarova and Archie Babin…
+Now, choose **one** of the following options:
+ * Find Archie Babin at the Greenwich Police Precinct, and tell him the truth about why his brother Sam was murdered: $golead(day2decision1)
+ * Drive to the Downing Street Apartments to say good morning to Effy instead: $golead(day2decision2)
+
+# day2decision1 (autoid=true)
+Scene 1
+“You are a class-A idiot, Malcolm.” I don’t usually talk to myself out loud; certainly not in public. “Then again, it’s going to be a rough day with a rough start.” 
+It’s not my responsibility to break the news to Archie about his brother perpetrating blackmail. I’m not sure why I’m doing it. But here I am, standing at the tiny bodega across from the precinct with two cups of coffee. There’s Archie. He sees me and trots over.
+“You wanted to see me, LT.” His voice is rougher than usual; his face placid. I figure he’s doing his stoic big brother act, refusing to show how the murder is affecting him. 
+I offer one of the coffees to him. 
+“Archie, I wanted you to get this from me instead of the grapevine.” I’m talking faster than usual and I can’t slow down. “I’m going to give it to you in one dose. Sam was blackmailing one of his clients. He’d learned something dangerous, and he decided to extort money from them.” 
+Archie’s eyes light up with anger. He glares at me, then past me. His mouth opens and closes. His body goes rigid like a soldier on parade. “Will that be all, LT? I have duties that need doing?”
+He departs without waiting for me to answer, leaving me with the feeling that I’ve lost an almost-friend and a reliable contact – neither of which seem to matter much right now. Just outside the entrance to the precinct, I see him throw the coffee into a trashcan.
+
+# day2decision2 (autoid=true)
+Scene 2
+“You are a class-A idiot, Malcolm.” I don’t usually talk to myself out loud; certainly not in public. “Why’d you spill your guts to Effy like that?” 
+The more important question is: why am I standing in the lobby of the Downing Street Apartments with two takeaway cups of coffee and some croissants? 
+I spot Effy descending the stairs, and despite masterfully-applied makeup, it’s clear she’s operating on insufficient sleep. 
+“Dear Malcolm,” she says upon reaching me, but her voice is less cheerful than yesterday. “Are you here to amaze me with your deductive prowess?” 
+“Um,” I reply, feeling as if the floor tiles are shifting under my feet. “What do you mean?”
+“Ah. So you don’t know. Good. You’re human. Mr Glynn called me last night after you and Sgt. Stone left. He threatened to kill me if I was involved in Sam Babin’s death.” She smiles as if she’d won some lottery. 
+I take a second to process the information, but before I can reply, Effy heads me off: “Any comments for The Daily Mirror, Malcolm?”
+“What about a quiet coffee before the madness of a new day kicks off?”
+She takes one of the coffees and one croissant. “Maybe next time. There’s a world of gossip to track down and, apparently, at least one man who wants me dead.” 
+As she exits the lobby, I turn to the reception desk to see Danny giving me a flat look. 
+“Want coffee and a croissant, Danny?”  
+“Fine,” he growls. “Someone should have it.” Danny frowns at me. “You look… upset, officer.”
+I frown back at him, suddenly angry without knowing why. “Thank you for your cooperation,” I mumble, and leave – forcing myself to walk slowly.  
+Harry is waiting for me at the station, grinning stupidly, while holding two cups of coffee. “Good morning, Lieutenant!” he calls before I’m even out of the car. I count to ten. My heart rate slows. When I get out, I’m grateful for the cold morning air.  
+“Morning Sergeant. We have work to do.”  
+
+

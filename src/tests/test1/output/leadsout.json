@@ -1,0 +1,688 @@
+{
+  "sections": {
+    "cover": {
+      "label": "",
+      "sort": "002",
+      "leadSort": "index",
+      "cssStyle": "onecolumn",
+      "leads": {
+        "COVER": {
+          "block": {
+            "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+            "lineNumber": 0,
+            "type": "header",
+            "text": "",
+            "properties": {
+              "id": "cover",
+              "label": "",
+              "type": "lead",
+              "noid": true,
+              "section": "cover",
+              "pageBreakAfter": true,
+              "renderId": "cover",
+              "sectionName": "cover"
+            },
+            "blocks": [
+              {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 1,
+                "type": "text",
+                "text": "## TEST CASE\nby Jesse Reichler\nv1.3 - January 1, 2023\n\n\n\n",
+                "properties": {}
+              }
+            ]
+          },
+          "properties": {
+            "id": "cover",
+            "label": "",
+            "type": "lead",
+            "noid": true,
+            "section": "cover",
+            "pageBreakAfter": true,
+            "renderId": "cover",
+            "sectionName": "cover"
+          },
+          "text": "## TEST CASE\nby Jesse Reichler\nv1.3 - January 1, 2023",
+          "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+          "lineNumber": 0,
+          "leadIndex": 0
+        }
+      }
+    },
+    "Briefings": {
+      "label": "Briefings",
+      "sort": "010",
+      "leadsort": "index",
+      "cssStyle": "onecolumn",
+      "leads": {
+        "INTRO": {
+          "block": {
+            "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+            "lineNumber": 55,
+            "type": "header",
+            "text": "",
+            "properties": {
+              "section": "Briefings",
+              "id": "Intro",
+              "label": "",
+              "type": "lead",
+              "renderId": "Intro",
+              "sectionName": "Briefings"
+            },
+            "blocks": [
+              {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 56,
+                "type": "text",
+                "text": "This is the start of your case!\n\n",
+                "properties": {}
+              }
+            ]
+          },
+          "properties": {
+            "section": "Briefings",
+            "id": "Intro",
+            "label": "",
+            "type": "lead",
+            "renderId": "Intro",
+            "sectionName": "Briefings"
+          },
+          "text": "This is the start of your case!",
+          "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+          "lineNumber": 55,
+          "leadIndex": 10
+        }
+      }
+    },
+    "Main": {
+      "label": "Main Leads",
+      "sort": "050",
+      "leadsort": "alpha",
+      "sections": {
+        "NE": {
+          "label": "NE",
+          "sort": "NE",
+          "leads": {
+            "55NE": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 51,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "55 NE",
+                  "label": "The Market Stall",
+                  "type": "lead",
+                  "renderId": "55 NE",
+                  "sectionName": "Main.NE"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 52,
+                    "type": "text",
+                    "text": "We eat some fish and chips from a stall on the side of the road.\nWiggins says they are *delicious*.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "55 NE",
+                "label": "The Market Stall",
+                "type": "lead",
+                "renderId": "55 NE",
+                "sectionName": "Main.NE"
+              },
+              "text": "We eat some fish and chips from a stall on the side of the road.\nWiggins says they are *delicious*.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 51,
+              "leadIndex": 9
+            }
+          }
+        },
+        "NW": {
+          "label": "NW",
+          "sort": "NW",
+          "leads": {
+            "15NW": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 20,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "15 NW",
+                  "label": "Mrs. Brown",
+                  "type": "lead",
+                  "renderId": "15 NW",
+                  "sectionName": "Main.NW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 21,
+                    "type": "text",
+                    "text": "Mrs. Brown throws pans at us when she sees us from the window\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "15 NW",
+                "label": "Mrs. Brown",
+                "type": "lead",
+                "renderId": "15 NW",
+                "sectionName": "Main.NW"
+              },
+              "text": "Mrs. Brown throws pans at us when she sees us from the window",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 20,
+              "leadIndex": 2
+            },
+            "22NW": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 17,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "22 NW",
+                  "label": "Home of our Mentor",
+                  "type": "lead",
+                  "renderId": "22 NW",
+                  "sectionName": "Main.NW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 18,
+                    "type": "text",
+                    "text": "We knock on the door but Holmes appears to have left home.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "22 NW",
+                "label": "Home of our Mentor",
+                "type": "lead",
+                "renderId": "22 NW",
+                "sectionName": "Main.NW"
+              },
+              "text": "We knock on the door but Holmes appears to have left home.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 17,
+              "leadIndex": 1
+            },
+            "24NW": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 23,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "24 NW",
+                  "label": "The Locked Door",
+                  "type": "lead",
+                  "renderId": "24 NW",
+                  "sectionName": "Main.NW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 24,
+                    "type": "text",
+                    "text": "Wiggins appears to have left his lock pick at home.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "24 NW",
+                "label": "The Locked Door",
+                "type": "lead",
+                "renderId": "24 NW",
+                "sectionName": "Main.NW"
+              },
+              "text": "Wiggins appears to have left his lock pick at home.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 23,
+              "leadIndex": 3
+            }
+          }
+        },
+        "SE": {
+          "label": "SE",
+          "sort": "SE",
+          "leads": {
+            "66SE": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 39,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "66 SE",
+                  "label": "The Pigs Knuckles Inn",
+                  "type": "lead",
+                  "renderId": "66 SE",
+                  "sectionName": "Main.SE"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 40,
+                    "type": "text",
+                    "text": "The bar looks a bit rough:\n* If you would like to enter, go to ",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 41,
+                    "type": "code",
+                    "text": "lead(Z-3)",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 41,
+                    "type": "text",
+                    "text": "\n\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "66 SE",
+                "label": "The Pigs Knuckles Inn",
+                "type": "lead",
+                "renderId": "66 SE",
+                "sectionName": "Main.SE"
+              },
+              "text": "The bar looks a bit rough:\n* If you would like to enter, go to [Z-3](#Z-3)",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 39,
+              "leadIndex": 6
+            }
+          }
+        },
+        "SW": {
+          "label": "SW",
+          "sort": "SW",
+          "leads": {
+            "7SW": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 26,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "7 SW",
+                  "label": "An Encounter with a Taxi",
+                  "type": "lead",
+                  "renderId": "7 SW",
+                  "sectionName": "Main.SW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 27,
+                    "type": "text",
+                    "text": "The cab splashes water all over us.\n",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 28,
+                    "type": "code",
+                    "text": "gaintag(wet)",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 28,
+                    "type": "text",
+                    "text": "\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "7 SW",
+                "label": "An Encounter with a Taxi",
+                "type": "lead",
+                "renderId": "7 SW",
+                "sectionName": "Main.SW"
+              },
+              "text": "The cab splashes water all over us.\n* You have gained the requirement letter \"**W**\"; please circle this letter in your records for later use (if you have not done so already).",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 26,
+              "leadIndex": 4
+            },
+            "44SW": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 30,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "44 SW",
+                  "label": "The Wash House",
+                  "type": "lead",
+                  "renderId": "44 SW",
+                  "sectionName": "Main.SW"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 31,
+                    "type": "text",
+                    "text": "We walk in the publish wash house.\n",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 32,
+                    "type": "code",
+                    "text": "havetag(wet)",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 32,
+                    "type": "text",
+                    "text": ", go to ",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 32,
+                    "type": "code",
+                    "text": "jumplead(Z-1)",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 34,
+                    "type": "code",
+                    "text": "endjump",
+                    "properties": {
+                      "embeddedShortCode": false
+                    }
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 34,
+                    "type": "text",
+                    "text": "\n* Otherwise, go to ",
+                    "properties": {}
+                  },
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 35,
+                    "type": "code",
+                    "text": "jumplead(Z-2)",
+                    "properties": {
+                      "embeddedShortCode": true
+                    }
+                  }
+                ]
+              },
+              "properties": {
+                "id": "44 SW",
+                "label": "The Wash House",
+                "type": "lead",
+                "renderId": "44 SW",
+                "sectionName": "Main.SW"
+              },
+              "text": "We walk in the publish wash house.\n* If you have gained (circled) the requirement letter \"**W**\", go to [Z-1](#Z-1)\n* Otherwise, go to [Z-2](#Z-2)",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 30,
+              "leadIndex": 5
+            }
+          }
+        },
+        "WC": {
+          "label": "WC",
+          "sort": "WC",
+          "leads": {
+            "7WC": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 48,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "7 WC",
+                  "label": "A Grand View",
+                  "type": "lead",
+                  "renderId": "7 WC",
+                  "sectionName": "Main.WC"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 49,
+                    "type": "text",
+                    "text": "We look around at London in all her glory.\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "7 WC",
+                "label": "A Grand View",
+                "type": "lead",
+                "renderId": "7 WC",
+                "sectionName": "Main.WC"
+              },
+              "text": "We look around at London in all her glory.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 48,
+              "leadIndex": 8
+            },
+            "9WC": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads\\more/moreLeads.txt\"",
+                "lineNumber": 0,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "9 WC",
+                  "label": "The Deep Well",
+                  "type": "lead",
+                  "renderId": "9 WC",
+                  "sectionName": "Main.WC"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads\\more/moreLeads.txt\"",
+                    "lineNumber": 1,
+                    "type": "text",
+                    "text": "We look down the deep well but can't see anything.\n\"**HELLO**\" yells Wiggins, but there is no reply.\n\n\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "9 WC",
+                "label": "The Deep Well",
+                "type": "lead",
+                "renderId": "9 WC",
+                "sectionName": "Main.WC"
+              },
+              "text": "We look down the deep well but can't see anything.\n\"**HELLO**\" yells Wiggins, but there is no reply.",
+              "sourceLabel": "FILE \"tests/test1/leads\\more/moreLeads.txt\"",
+              "lineNumber": 0,
+              "leadIndex": 12
+            }
+          }
+        },
+        "Z": {
+          "label": "Z",
+          "sort": "Z",
+          "leads": {
+            "Z 1": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 32,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "Z-1",
+                  "label": "The Wash House (#[44 SW](#44_SW)) contd.",
+                  "type": "lead",
+                  "renderId": "Z-1",
+                  "sectionName": "Main.Z"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 32,
+                    "type": "text",
+                    "text": "\nWe dry ourselves off and feel much better.\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "Z-1",
+                "label": "The Wash House (#[44 SW](#44_SW)) contd.",
+                "type": "lead",
+                "renderId": "Z-1",
+                "sectionName": "Main.Z"
+              },
+              "text": "We dry ourselves off and feel much better.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 32,
+              "leadIndex": 13
+            },
+            "Z 2": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 35,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "Z-2",
+                  "label": "The Wash House (#[44 SW](#44_SW)) contd.",
+                  "type": "lead",
+                  "renderId": "Z-2",
+                  "sectionName": "Main.Z"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 35,
+                    "type": "text",
+                    "text": "\nWe decide to wash our socks in the nearest basin.\n\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "Z-2",
+                "label": "The Wash House (#[44 SW](#44_SW)) contd.",
+                "type": "lead",
+                "renderId": "Z-2",
+                "sectionName": "Main.Z"
+              },
+              "text": "We decide to wash our socks in the nearest basin.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 35,
+              "leadIndex": 14
+            },
+            "Z 3": {
+              "block": {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 44,
+                "type": "header",
+                "text": "",
+                "properties": {
+                  "id": "Z-3",
+                  "label": "The Dangerous Bar",
+                  "type": "lead",
+                  "renderId": "Z-3",
+                  "sectionName": "Main.Z"
+                },
+                "blocks": [
+                  {
+                    "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                    "lineNumber": 45,
+                    "type": "text",
+                    "text": "It's not so bad in the bar after all, we order sasparilla.\n\n\n",
+                    "properties": {}
+                  }
+                ]
+              },
+              "properties": {
+                "id": "Z-3",
+                "label": "The Dangerous Bar",
+                "type": "lead",
+                "renderId": "Z-3",
+                "sectionName": "Main.Z"
+              },
+              "text": "It's not so bad in the bar after all, we order sasparilla.",
+              "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+              "lineNumber": 44,
+              "leadIndex": 7
+            }
+          }
+        }
+      }
+    },
+    "End": {
+      "label": "End",
+      "sort": "100",
+      "leadsort": "index",
+      "cssStyle": "onecolumn",
+      "leads": {
+        "FINALE": {
+          "block": {
+            "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+            "lineNumber": 58,
+            "type": "header",
+            "text": "",
+            "properties": {
+              "section": "End",
+              "id": "Finale",
+              "label": "",
+              "type": "lead",
+              "renderId": "Finale",
+              "sectionName": "End"
+            },
+            "blocks": [
+              {
+                "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+                "lineNumber": 59,
+                "type": "text",
+                "text": "This is a finale section where you get some questions.\n\n",
+                "properties": {}
+              }
+            ]
+          },
+          "properties": {
+            "section": "End",
+            "id": "Finale",
+            "label": "",
+            "type": "lead",
+            "renderId": "Finale",
+            "sectionName": "End"
+          },
+          "text": "This is a finale section where you get some questions.",
+          "sourceLabel": "FILE \"tests/test1/leads/myMainLeads.txt\"",
+          "lineNumber": 58,
+          "leadIndex": 11
+        }
+      }
+    }
+  }
+}

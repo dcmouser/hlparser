@@ -1137,3 +1137,24 @@ def escapedCharacterConvert(charc):
 def getNiceCurrentDateTime():
     return datetime.datetime.now().strftime('%A, %B %d at %I:%M %p')
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+def purals(amount, ifMoreThanOneText):
+    amount = int(amount)
+    if (amount==1):
+        return ''
+    else:
+        return ifMoreThanOneText
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+def makeNiceCommaAndOrList(strList, lastWord):
+    listLen = len(strList)
+    if (listLen<2):
+        return ','.join(strList)
+    listFront = strList[0:listLen-1]
+    text = ','.join(listFront)
+    text += ', ' + lastWord + ' ' + strList[listLen-1]
+    return text
+# ---------------------------------------------------------------------------
