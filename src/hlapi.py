@@ -22,9 +22,14 @@ class HlApi:
         self.unusedLeads = None
         self.leads = None
 
+    def setDataDir(self, dataDir):
+        self.dataDir = dataDir
 
     def isEnabled(self):
         return ('enabled' not in self.options) or (self.options['enabled'])
+
+    def enableSlowSearch(self):
+        return ('disableSlowSearch' not in self.options) or (not self.options['disableSlowSearch'])
 
 
 
@@ -103,6 +108,11 @@ class HlApi:
     def findLeadRowByNameOrAddress(self, txt):
         if (not self.isEnabled()):
             return [None, None]
+        #if (not self.enableSlowSearch()):
+        #    return [None, None, 0]
+        txt = txt.strip()
+        if (txt==''):
+            return [None, None]
 
         if (self.leads is None):
             self.loadLeads()
@@ -110,6 +120,7 @@ class HlApi:
             for row in leadRows:
                 if (row['properties']['address']==txt) or (row['properties']['dName']==txt):
                     return [row, sourceKey]
+                dName = row['properties']['dName']
         # not found
         return [None, None]
 
@@ -117,6 +128,11 @@ class HlApi:
     def findLeadRowSimilarByNameOrAddress(self, txt):
         if (not self.isEnabled()):
             return [None, None, 0]
+        if (not self.enableSlowSearch()):
+            return [None, None, 0]
+        txt = txt.strip()
+        if (txt==''):
+            return [None, None]
 
         if (self.leads is None):
             self.loadLeads()

@@ -218,7 +218,7 @@ def loadTxtFromFile(filePath, flagErrorIfNotFound, encoding = None):
     if (not pathExists(filePath)):
         if (flagErrorIfNotFound):
             raise Exception('ERROR: could not loadTxtFromFile for "{}".'.format(filePath))
-        jrprint('In loadTxtFromFile failed to find {}.'.format(filePath))
+        #jrprint('In loadTxtFromFile failed to find {}.'.format(filePath))
         return None
     if (encoding is not None):
         try:
@@ -657,10 +657,31 @@ def jrprint(*args, **kwargs):
     except Exception as e:
         print('EXCEPTION WHILE TRYING TO PRINT TO FILE: {}'.format(e))
         moduleErrorPrintCount += 1
+        # invoke normal print
+        print(*args, **kwargs)
         return
 
     # invoke normal print
     return print(*args, **kwargs)
+
+
+def jrlog(*args, **kwargs):
+    # replacement for print function that will allow logging
+    global moduleLogFile
+    global moduleErrorPrintCount
+
+    # create log file
+    if (moduleLogFile is None):
+        filePath = 'logs/log_' + time.strftime('%Y%m%d_%H%M%S') + '.txt'
+        moduleLogFile = open(filePath, 'a+')
+        print('>LOGGING TO: {}..'.format(filePath))
+    # log
+    try:
+        print(*args, file=moduleLogFile, **kwargs)
+    except Exception as e:
+        print('EXCEPTION WHILE TRYING TO PRINT TO FILE: {}'.format(e))
+        moduleErrorPrintCount += 1
+        return
 
 
 # see https://stackoverflow.com/questions/5309978/sprintf-like-functionality-in-python
@@ -678,7 +699,7 @@ def getJrPrintErrorCount():
 def jrException(msg):
     textLine = 'EXCEPTION: ' + msg
     jrprint(textLine)
-    raise Exception(msg)
+     
 # ---------------------------------------------------------------------------
 
 
@@ -1084,6 +1105,14 @@ def sortDictByAKeyVal(mydict, keyName):
     myKeys.sort(key=lambda keyval: mydict[keyval][keyName])
     dictSorted = {i: mydict[i] for i in myKeys}
     return dictSorted
+
+
+def sortDictByASecondaryKeyVal(mydict, firstKey, keyName):
+    myKeys = list(mydict.keys())
+    # sort by value of keyName
+    myKeys.sort(key=lambda keyval: mydict[keyval][firstKey][keyName])
+    dictSorted = {i: mydict[i] for i in myKeys}
+    return dictSorted
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
@@ -1139,7 +1168,7 @@ def getNiceCurrentDateTime():
 # ---------------------------------------------------------------------------
 
 # ---------------------------------------------------------------------------
-def purals(amount, ifMoreThanOneText):
+def plurals(amount, ifMoreThanOneText):
     amount = int(amount)
     if (amount==1):
         return ''
@@ -1151,10 +1180,38 @@ def purals(amount, ifMoreThanOneText):
 # ---------------------------------------------------------------------------
 def makeNiceCommaAndOrList(strList, lastWord):
     listLen = len(strList)
-    if (listLen<2):
-        return ','.join(strList)
+    if (listLen==1):
+        return strList[0]
+    elif (listLen==2):
+        return strList[0] + ' ' + lastWord + ' ' + strList[1]
+    # longer
     listFront = strList[0:listLen-1]
     text = ','.join(listFront)
     text += ', ' + lastWord + ' ' + strList[listLen-1]
     return text
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
+def uppercaseFirstLetter(text):
+    text = text[0].upper() + text[1:]
+    return text
+# ---------------------------------------------------------------------------
+
+
+
+
+
+
+# ---------------------------------------------------------------------------
+def semiMatchStringsNoPunctuation(dname1, dname2):
+    dname1 = dname1.lower()
+    dname2 = dname2.lower()
+    dname1 = ''.join(e for e in dname1 if e.isalnum())
+    dname2 = ''.join(e for e in dname2 if e.isalnum())
+    if (dname1 == '') or (dname2==''):
+        return (dname1 == dname2)
+    if (dname1 in dname2) or (dname2 in dname1):
+        return True
+    return False
 # ---------------------------------------------------------------------------

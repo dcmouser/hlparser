@@ -41,6 +41,11 @@ class JrMindMap:
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+    def getNodes(self):
+        return self.nodes
+# ---------------------------------------------------------------------------
+
 
 # ---------------------------------------------------------------------------
     def findNodeById(self, id):
@@ -57,6 +62,10 @@ class JrMindMap:
         toNode = link['to']
         fromNode['to'].append(link)
         toNode['from'].append(link)
+
+    def annotateNode(self, node, attributes):
+        for k,v in attributes.items():
+            node['props'][k] = v
 # ---------------------------------------------------------------------------
 
 
@@ -92,18 +101,6 @@ class JrMindMap:
 # ---------------------------------------------------------------------------
  
 
-# ---------------------------------------------------------------------------
-    def cleanLabel(self, text):
-        matches = re.match(r'([^\(]*)\(.*contd\.', text)
-        if (matches is not None):
-            text = matches[1].strip() + ' contd.'
-            # TEST for inline short label
-            text = 'cont.'
-        text = text.strip()
-        return text
-# ---------------------------------------------------------------------------
-
-
 
 
 # ---------------------------------------------------------------------------
@@ -112,35 +109,73 @@ class JrMindMap:
 
         # main graph
         dot = graphviz.Digraph(comment='Story')
-        dot.attr(rankdir='LR', size='8.5, 11')
+        dot.attr(rankdir='LR')
+
+        if (False):
+            dot.attr(layout="neato")
+            dot.attr(scale="2")
+
+
+        # graphviz colors, etc.:
+        # https://graphviz.org/doc/info/colors.html
+
 
         # add all nodes
         for id, node in self.nodes.items():
             # add nodes
             nodeId = node['id']
-            label = node['props']['label'] if ('label' in node['props']) else nodeId
-            if (label is None):
-                label = nodeId
-            else:
-                label = self.cleanLabel(label)
-            #
-            mtype = node['props']['mtype']
+            nodeProps = node['props']
+            label = nodeProps['label'] if ('label' in nodeProps and nodeProps['label']!='' and nodeProps['label'] is not None) else nodeId
+            mtype = nodeProps['mtype']
 
             # shapes see https://graphviz.org/doc/info/shapes.html
             color = 'black'
-            if (mtype=='concept'):
-                shape='ellipse'
+            penwidth = '1'
+            shape = 'rectangle'
+            #
+            if (mtype is None):
+                shape = 'diamond'
+                color = 'red'
+                penwidth = '4'
+            elif (mtype=='tag'):
+                shape = 'ellipse'
+            elif (mtype=='day'):
+                shape = 'circle'
+                penwidth = '2'
+            elif (mtype in ['cond','check']):
+                shape = 'ellipse'
+                color = 'purple'
+            elif (mtype in ['trophy','decoy']):
+                shape = 'ellipse'
+                color = 'yellow'
+            elif (mtype in ['hint']):
+                shape = 'hexagon'
+                color = 'purple'
+            elif (mtype=='task'):
+                shape = 'hexagon'
+                color = 'blue'
+            elif (mtype=='idea'):
+                shape = 'ellipse'
+                color = 'darkorange'
+                penwidth = '2'
             elif ('inline' in mtype):
                 shape='rectangle'
-                color = 'green'
-            elif (mtype=='person'):
+                color = 'lightgreen'
+            elif (mtype=='lead.person'):
                 shape = 'hexagon'
-            elif (mtype=='yellow'):
+            elif (mtype=='lead.yellow'):
                 shape = 'house'
-            else:
-                shape = 'rectangle'
+
+            elif (mtype=='doc'):
+                shape = 'note'
+                color = 'red'
             #
-            dot.node(nodeId, label, shape=shape, color=color)
+            # relevance
+            if ('relevance' in nodeProps) and (nodeProps['relevance']<0):
+                color = 'pink'
+            #
+            dot.node(nodeId, label, shape=shape, color=color, penwidth=penwidth)
+
 
         # add all links
         for id, node in self.nodes.items():
@@ -149,11 +184,38 @@ class JrMindMap:
                 toNode = link['to']
                 toNodeId = toNode['id']
                 linkType = link['props']['mtype']
-                dotEdgeLabel = linkType
-                dot.edge(nodeId, toNodeId, dotEdgeLabel)
+                isInline = link['props']['inline'] if ('inline' in link['props']) else False
+                # label
+                dotEdgeLabel = link['props']['label'] if ('label' in link['props'] and link['props']['label']!='' and link['props']['label'] is not None) else linkType
+
+                # default
+                color = 'black'
+                penwidth = '1'
+                if (isInline):
+                    color = 'green'
+
+                if (linkType=='goto'):
+                    pass
+                elif (dotEdgeLabel == 'mentions'):
+                    penwidth = '3.5'
+                elif (dotEdgeLabel == 'implies'):
+                    penwidth = '2'
+                elif (dotEdgeLabel=='suggests'):
+                    penwidth = '1'
+                elif (dotEdgeLabel=='informs'):
+                    color = 'blue'
+                elif (dotEdgeLabel=='provides'):
+                    color = 'red'
+                    penwidth = '2'
+                elif (dotEdgeLabel=='hint'):
+                    color = 'purple'
+                #
+                dot.edge(nodeId, toNodeId, dotEdgeLabel, color=color, penwidth=penwidth)
 
         # store it
         self.dot = dot
 # ---------------------------------------------------------------------------
+ 
+
  
 

@@ -105,6 +105,7 @@ if __name__ == "__main__":
     if (errorCount==0):
         message += ', with NO errors.'
     else:
+        message = '**ERRORS** : ' + message
         message += ', with {} TOTAL ERRORS!'.format(errorCount)
     jrprint(message + '.')
 # ---------------------------------------------------------------------------
